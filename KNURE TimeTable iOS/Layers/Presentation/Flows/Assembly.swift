@@ -66,8 +66,9 @@ final class Assembly {
 		)
 	}
 
-	func makeAddItemsView(for itemType: Item.Kind) -> AddItemsListView {
+	func makeAddItemsView(for itemType: Item.Kind, path: Binding<[String]>) -> AddItemsListView {
 		AddItemsListView(
+			path: path,
 			interactor: AddItemsInteractor(
 				itemsUseCase: ItemsUseCase(
 					repository: KNUREItemRepository(

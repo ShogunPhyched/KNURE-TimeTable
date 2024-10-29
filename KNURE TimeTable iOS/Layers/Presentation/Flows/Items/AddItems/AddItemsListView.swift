@@ -10,7 +10,8 @@ import SwiftUI
 
 struct AddItemsListView: View {
 
-	@Environment(\.dismiss) private var dismiss
+	@Binding var path: [String]
+
 	@State private var searchText = ""
 	@State private var viewModel: [AddItemsListView.Model] = []
 	@State private var isErrorOccured: Bool = false
@@ -18,33 +19,38 @@ struct AddItemsListView: View {
 	let interactor: AddItemsInteractor
 	let itemType: Item.Kind
 
-    var body: some View {
-		NavigationStack {
-			List(viewModel) { record in
-				Button {
-					Task {
-						try await interactor.save(item: record.item)
-						dismiss()
+	var body: some View {
+		ZStack {
+			if viewModel.isEmpty {
+				ProgressView()
+					.controlSize(.large)
+			} else {
+				List(viewModel) { record in
+					Button {
+						Task {
+							try await interactor.save(item: record.item)
+							path.removeAll()
+						}
+					} label: {
+						AddItemCell(model: .init(title: record.title, selected: record.selected))
 					}
-				} label: {
-					AddItemCell(model: .init(title: record.title, selected: record.selected))
 				}
-			}
-			.navigationTitle("Add Items List")
-			.listStyle(.plain)
-			.task {
-				do {
-					viewModel = try await interactor.obtainItems(kind: itemType)
-				} catch {
-					isErrorOccured = true
+				.navigationTitle("Add Items List")
+				.listStyle(.plain)
+				.task {
+					do {
+						viewModel = try await interactor.obtainItems(kind: itemType)
+					} catch {
+						isErrorOccured = true
+					}
 				}
-			}
-			.searchable(text: $searchText)
-			.alert("An Error has occured", isPresented: $isErrorOccured) {
-				Button(role: .cancel) {
-					isErrorOccured = false
-				} label: {
-					Text("Ok")
+				.searchable(text: $searchText)
+				.alert("An Error has occured", isPresented: $isErrorOccured) {
+					Button(role: .cancel) {
+						isErrorOccured = false
+					} label: {
+						Text("Ok")
+					}
 				}
 			}
 		}
