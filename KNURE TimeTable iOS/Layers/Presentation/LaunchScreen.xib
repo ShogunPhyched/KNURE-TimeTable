@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment version="2304" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfX-A6-WwX">
+                    <rect key="frame" x="20" y="603" width="335" height="44"/>
+                    <viewLayoutGuide key="safeArea" id="68p-75-2l0"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="7Iz-o7-NZf"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">KNURE Timetable 
+© Vladislav Chapaev 2024</string>
+                            <attributes>
+                                <color key="NSBackgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <font key="NSFont" metaFont="system" size="17"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nure_icon" translatesAutoresizingMaskIntoConstraints="NO" id="KyP-UW-XpH">
+                    <rect key="frame" x="27.5" y="173.5" width="320" height="320"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="320" id="GA0-23-Ae8"/>
+                        <constraint firstAttribute="height" constant="320" id="UIi-Tl-SmT"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="1nq-Dj-6Ki"/>
+            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="KyP-UW-XpH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="8y7-Ra-KbG"/>
+                <constraint firstItem="JfX-A6-WwX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="QVu-ux-Sfp"/>
+                <constraint firstItem="KyP-UW-XpH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="m5j-9a-vUa"/>
+                <constraint firstAttribute="trailing" secondItem="JfX-A6-WwX" secondAttribute="trailing" constant="20" id="put-wL-ons"/>
+                <constraint firstAttribute="bottom" secondItem="JfX-A6-WwX" secondAttribute="bottom" constant="20" id="xaP-xq-jNY"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="24" y="51"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="nure_icon" width="1024" height="1024"/>
+    </resources>
+</document>

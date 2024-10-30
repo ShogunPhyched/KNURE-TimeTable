@@ -27,34 +27,32 @@ final class KNURELessonImportServiceTests: XCTestCase {
 		super.tearDown()
     }
 
-	func testSuccessLessonImport() {
+	func testSuccessLessonImport() async throws {
 		// arrange
 		let context = storeWrapper.persistentContainer.newBackgroundContext()
 		let itemManaged = ItemManaged(context: context)
 		itemManaged.identifier = "6949706"
-		XCTAssertNoThrow(try context.save())
+		try context.save()
 
 		let data = MockJSONLoader.load(json: "timetable", item: .groups)
 
 		// act
-		XCTAssertNoThrow(try sut.decode(data, info: ["identifier": "6949706"]))
+		try await sut.decode(data, info: ["identifier": "6949706"])
 
 		// assert
-		sleep(1)
 		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
 		let result = XCTAssertNoRethrow(try storeWrapper.persistentContainer.viewContext.fetch(request))
 		XCTAssertGreaterThan(result.count, 0)
 	}
 
-	func testEmptyItemsResultShouldNotImportLessons() throws {
+	func testEmptyItemsResultShouldNotImportLessons() async throws {
 	    // arrange
 		let data = MockJSONLoader.load(json: "timetable", item: .groups)
 
 		// act
-		try sut.decode(data, info: ["identifier": "6949706"])
+		try await sut.decode(data, info: ["identifier": "6949706"])
 
 		// assert
-		sleep(1)
 		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
 		let result = try storeWrapper.persistentContainer.viewContext.fetch(request)
 		XCTAssertEqual(result.count, 0)
