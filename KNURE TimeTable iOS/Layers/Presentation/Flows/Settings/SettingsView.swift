@@ -12,8 +12,5 @@ struct SettingsView: View {
 
 	var body: some View {
 		Label("Empty view", systemImage: "some")
-			.tabItem {
-				Label("Settings", systemImage: "gearshape.fill")
-			}
 	}
 }

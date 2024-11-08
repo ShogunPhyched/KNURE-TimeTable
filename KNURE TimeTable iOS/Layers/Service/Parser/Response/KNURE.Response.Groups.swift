@@ -25,7 +25,7 @@ extension KNURE.Response.University.Faculty.Direction {
 	}
 
 	struct Group: Decodable {
-		let id: Int
+		let id: Int64
 		let name: String
 	}
 }

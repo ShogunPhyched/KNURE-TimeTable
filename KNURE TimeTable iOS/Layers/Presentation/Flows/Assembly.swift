@@ -18,6 +18,26 @@ final class Assembly {
 	private let persistentStoreContainer = DefaultAppConfig().persistentStoreContainer
 	private let urlSessionConfiguration = DefaultAppConfig().urlSessionConfiguration
 
+	func makeTimetableView() -> TimetableViewController {
+		TimetableViewController(
+			interactor: TimetableInteractor(
+				timetableSubscription: TimetableSubscription(
+					repository: KNURELessonRepository(
+						coreDataService: CoreDataServiceImpl(
+							persistentContainer: persistentStoreContainer
+						),
+						importService: KNURELessonImportService(
+							persistentContainer: persistentStoreContainer
+						),
+						networkService: NetworkServiceImpl(
+							configuration: urlSessionConfiguration
+						)
+					)
+				)
+			)
+		)
+	}
+
 	func makeItemsView() -> ItemsListView {
 		ItemsListView(
 			interactor: ItemsListInteractor(

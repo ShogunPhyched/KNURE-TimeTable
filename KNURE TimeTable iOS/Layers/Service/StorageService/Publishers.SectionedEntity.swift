@@ -13,15 +13,10 @@ extension Publishers {
 
 	final class SectionedEntity<T: NSFetchRequestResult & Convertable>: NSObject, NSFetchedResultsControllerDelegate {
 
-		struct Section: Sendable {
-			let name: String
-			let items: [T.NewType]
-		}
-
 		private let fetchResultsController: NSFetchedResultsController<T>
 		private let context: NSManagedObjectContext
 
-		fileprivate let subject: PassthroughSubject<[Section], Never> = .init()
+		fileprivate let subject: PassthroughSubject<[[T.NewType]], Never> = .init()
 
 		init(
 			request: NSFetchRequest<T>,
@@ -51,15 +46,13 @@ extension Publishers {
 
 				guard let sections = controller.sections else { return self.subject.send([]) }
 
-				var result: [Section] = []
+				var result: [[T.NewType]] = []
 
 				for section in sections {
 					guard let objects = section.objects as? [T] else { continue }
+
 					result.append(
-						Section(
-							name: section.name,
-							items: objects.compactMap { $0.convert() }
-						)
+						objects.compactMap { $0.convert() }
 					)
 				}
 
@@ -71,7 +64,7 @@ extension Publishers {
 
 extension Publishers.SectionedEntity: Publisher {
 
-	typealias Output = [Section]
+	typealias Output = [[T.NewType]]
 	typealias Failure = Never
 
 	func receive<S>(subscriber: S) where S: Subscriber,
@@ -89,15 +82,12 @@ extension Publishers.SectionedEntity: Publisher {
 
 			if let sections = self.fetchResultsController.sections {
 
-				var result: [Section] = []
+				var result: [[T.NewType]] = []
 
 				for section in sections {
 					guard let objects = section.objects as? [T] else { continue }
 					result.append(
-						Section(
-							name: section.name,
-							items: objects.compactMap { $0.convert() }
-						)
+						objects.compactMap { $0.convert() }
 					)
 				}
 
@@ -118,7 +108,7 @@ extension Subscribers {
 		@discardableResult
 		init(
 			publisher: Publishers.SectionedEntity<T>,
-			subscriber: AnySubscriber<[Publishers.SectionedEntity<T>.Section], Never>
+			subscriber: AnySubscriber<[[T.NewType]], Never>
 		) {
 			self.publisher = publisher
 

@@ -24,10 +24,10 @@ protocol CoreDataService: Sendable {
 	///   - request: <#request description#>
 	///   - sectionNameKeyPath: <#sectionNameKeyPath description#>
 	/// - Returns: <#description#>
-	func observe<T>(
+	func observe<T, R: Sendable>(
 		_ request: NSFetchRequest<T>,
 		sectionNameKeyPath: String?
-	) -> AnyPublisher<[Publishers.SectionedEntity<T>.Section], Never> where T: NSFetchRequestResult & Convertable
+	) -> AnyPublisher<[[R]], Never> where T: NSFetchRequestResult & Convertable, R == T.NewType
 
 	/// <#Description#>
 	/// - Parameters:

@@ -17,7 +17,7 @@ extension KNURE.Response.University.Faculty {
 
 extension KNURE.Response.University.Faculty.Department {
 	struct Teacher: Decodable {
-		let id: Int
+		let id: Int64
 		let shortName: String
 		let fullName: String
 	}

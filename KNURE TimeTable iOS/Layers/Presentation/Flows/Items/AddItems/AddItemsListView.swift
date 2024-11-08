@@ -60,7 +60,7 @@ struct AddItemsListView: View {
 extension AddItemsListView {
 
 	struct Model: Identifiable, Sendable, Hashable {
-		var id: String { item.identifier }
+		var id: String { String(item.identifier) }
 		let title: String
 		let selected: Bool
 

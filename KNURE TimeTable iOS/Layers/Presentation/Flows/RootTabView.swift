@@ -17,6 +17,7 @@ struct RootTabView: View {
 			Assembly.shared.makeItemsView()
 				.tabItem { Label("Items", systemImage: "list.bullet") }
 			SettingsView()
+				.tabItem { Label("Settings", systemImage: "gearshape.fill") }
 		}
 	}
 }

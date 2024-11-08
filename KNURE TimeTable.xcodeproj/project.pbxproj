@@ -31,7 +31,7 @@
 		775A3F8D2221797800931A1F /* SaveItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F8C2221797800931A1F /* SaveItemUseCase.swift */; };
 		775A3F8F222179A000931A1F /* RemoveItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F8E222179A000931A1F /* RemoveItemUseCase.swift */; };
 		775A3F91222179CD00931A1F /* SelectedItemsSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F90222179CD00931A1F /* SelectedItemsSubscription.swift */; };
-		775A3F9522217CB200931A1F /* TimetableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F9422217CB200931A1F /* TimetableUseCase.swift */; };
+		775A3F9522217CB200931A1F /* TimetableSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F9422217CB200931A1F /* TimetableSubscription.swift */; };
 		775A3F9922217FD700931A1F /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F9822217FD700931A1F /* Main.swift */; };
 		7766B3052561466C00CE638F /* KNURE.Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766B3042561466C00CE638F /* KNURE.Response.swift */; };
 		77713ED723F80D70006E3E4C /* KNURELessonImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77713ED623F80D70006E3E4C /* KNURELessonImportService.swift */; };
@@ -49,15 +49,20 @@
 		77D4AAAE23AF7B1000729A93 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D4AAAD23AF7B1000729A93 /* TimetableViewController.swift */; };
 		77D4AAB223AF7B3D00729A93 /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D4AAB123AF7B3D00729A93 /* TimetableViewModel.swift */; };
 		77D4AAB423AF7B4F00729A93 /* TimetableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D4AAB323AF7B4F00729A93 /* TimetableInteractor.swift */; };
-		77D4AAB723AF7BDA00729A93 /* CalendarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D4AAB623AF7BDA00729A93 /* CalendarLayout.swift */; };
 		77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC23C823C48FDA00A40D57 /* ItemsUseCase.swift */; };
 		77F160222402FA110028966F /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F160212402FA110028966F /* HTTP.swift */; };
 		77F16024240313750028966F /* KNURE.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16023240313750028966F /* KNURE.Request.swift */; };
 		D4062C4C2CBC49BD00B1F6C6 /* AddItemsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */; };
 		D4062C4E2CBC644800B1F6C6 /* Publishers.SectionedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4D2CBC642900B1F6C6 /* Publishers.SectionedEntity.swift */; };
+		D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */; };
+		D44CDA9A2CD2CA0A00B05CA5 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */; };
+		D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */; };
+		D44CDA9E2CD2D40700B05CA5 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */; };
 		D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8A2CAB467D002A97BB /* Subscribing.swift */; };
 		D466DD8D2CAB48A1002A97BB /* AddedItemsSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */; };
 		D466DD8F2CAB4B8C002A97BB /* ItemsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */; };
+		D468A5982CDC05D8002AD433 /* MockJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7783E9FC2544267F00198C9A /* MockJSONLoader.swift */; };
+		D468A5992CDC0614002AD433 /* Mocks in Resources */ = {isa = PBXBuildFile; fileRef = 7753DA51253340B20051A997 /* Mocks */; };
 		D469AADE2B8D13ED0091D91D /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADD2B8D13ED0091D91D /* ItemsListView.swift */; };
 		D469AAE02B8D20CE0091D91D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADF2B8D20CE0091D91D /* ItemCell.swift */; };
 		D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474E1D92CC2ECD1009A0709 /* Assembly.swift */; };
@@ -134,7 +139,7 @@
 		775A3F8C2221797800931A1F /* SaveItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveItemUseCase.swift; sourceTree = "<group>"; };
 		775A3F8E222179A000931A1F /* RemoveItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveItemUseCase.swift; sourceTree = "<group>"; };
 		775A3F90222179CD00931A1F /* SelectedItemsSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItemsSubscription.swift; sourceTree = "<group>"; };
-		775A3F9422217CB200931A1F /* TimetableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableUseCase.swift; sourceTree = "<group>"; };
+		775A3F9422217CB200931A1F /* TimetableSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSubscription.swift; sourceTree = "<group>"; };
 		775A3F9822217FD700931A1F /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		7766B3042561466C00CE638F /* KNURE.Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Response.swift; sourceTree = "<group>"; };
 		77713ED623F80D70006E3E4C /* KNURELessonImportService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNURELessonImportService.swift; sourceTree = "<group>"; };
@@ -155,13 +160,16 @@
 		77D4AAAD23AF7B1000729A93 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		77D4AAB123AF7B3D00729A93 /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		77D4AAB323AF7B4F00729A93 /* TimetableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableInteractor.swift; sourceTree = "<group>"; };
-		77D4AAB623AF7BDA00729A93 /* CalendarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLayout.swift; sourceTree = "<group>"; };
 		77DC23C823C48FDA00A40D57 /* ItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsUseCase.swift; sourceTree = "<group>"; };
 		77F160212402FA110028966F /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		77F16023240313750028966F /* KNURE.Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Request.swift; sourceTree = "<group>"; };
 		C33FCC631819965300328F6D /* KNURE TimeTable iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KNURE TimeTable iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsInteractor.swift; sourceTree = "<group>"; };
 		D4062C4D2CBC642900B1F6C6 /* Publishers.SectionedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publishers.SectionedEntity.swift; sourceTree = "<group>"; };
+		D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCollectionController.swift; sourceTree = "<group>"; };
+		D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewCell.swift; sourceTree = "<group>"; };
+		D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayColumnHeaderView.swift; sourceTree = "<group>"; };
+		D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
 		D466DD8A2CAB467D002A97BB /* Subscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscribing.swift; sourceTree = "<group>"; };
 		D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsSubscription.swift; sourceTree = "<group>"; };
 		D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListInteractor.swift; sourceTree = "<group>"; };
@@ -236,6 +244,7 @@
 		770290F422081C8800B82CF4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D44CDA962CD2C7BA00B05CA5 /* Collection */,
 				D48A24BD2C1637DA0081BF3A /* Flows */,
 				7702912222081C8800B82CF4 /* LaunchScreen.xib */,
 				7702914522081C8800B82CF4 /* MSCollectionViewCalendarLayout */,
@@ -304,7 +313,7 @@
 		775A3F8A2221790300931A1F /* usecases */ = {
 			isa = PBXGroup;
 			children = (
-				775A3F9422217CB200931A1F /* TimetableUseCase.swift */,
+				775A3F9422217CB200931A1F /* TimetableSubscription.swift */,
 				7716FCDA22885C4E00615D39 /* UpdateTimetableUseCase.swift */,
 			);
 			path = usecases;
@@ -431,20 +440,12 @@
 		77D4AAAC23AF7ADF00729A93 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				77D4AAB523AF7B9700729A93 /* CollectionViewLayout */,
 				77D4AAB323AF7B4F00729A93 /* TimetableInteractor.swift */,
 				77D4AAAD23AF7B1000729A93 /* TimetableViewController.swift */,
+				D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */,
 				77D4AAB123AF7B3D00729A93 /* TimetableViewModel.swift */,
 			);
 			path = Timetable;
-			sourceTree = "<group>";
-		};
-		77D4AAB523AF7B9700729A93 /* CollectionViewLayout */ = {
-			isa = PBXGroup;
-			children = (
-				77D4AAB623AF7BDA00729A93 /* CalendarLayout.swift */,
-			);
-			path = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
 		C33FCC5A1819965300328F6D = {
@@ -472,6 +473,16 @@
 				D474E1D82CC1BBD5009A0709 /* Layers */,
 			);
 			path = "KNURE TimeTable iOS";
+			sourceTree = "<group>";
+		};
+		D44CDA962CD2C7BA00B05CA5 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */,
+				D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */,
+				D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		D469AADC2B8D13CC0091D91D /* ItemsList */ = {
@@ -648,6 +659,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D468A5992CDC0614002AD433 /* Mocks in Resources */,
 				D48A24E22C1A1CEE0081BF3A /* Main.strings in Resources */,
 				7702916322081C8800B82CF4 /* LaunchScreen.xib in Resources */,
 				D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */,
@@ -708,12 +720,14 @@
 				77713ED723F80D70006E3E4C /* KNURELessonImportService.swift in Sources */,
 				7752F93D2247F018003DC9FE /* CoreDataServiceImpl.swift in Sources */,
 				77BEB5EB25618792002AB818 /* KNURE.Response.Lesson.swift in Sources */,
+				D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */,
 				775A3F772221731600931A1F /* ItemRepository.swift in Sources */,
-				775A3F9522217CB200931A1F /* TimetableUseCase.swift in Sources */,
+				775A3F9522217CB200931A1F /* TimetableSubscription.swift in Sources */,
 				D48A24802C14700A0081BF3A /* RootTabView.swift in Sources */,
 				7753DA56253348530051A997 /* Omissible.swift in Sources */,
 				775A3F8F222179A000931A1F /* RemoveItemUseCase.swift in Sources */,
 				7710B0C524D06B7200BE4E2D /* Publishers.Entity.swift in Sources */,
+				D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionController.swift in Sources */,
 				775A3F85222177AA00931A1F /* Item.swift in Sources */,
 				77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */,
 				77CC5A5225EAA20600D1FEEF /* NetworkService.swift in Sources */,
@@ -724,9 +738,9 @@
 				D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */,
 				775A3F9922217FD700931A1F /* Main.swift in Sources */,
 				771A83D522A7038C006964D7 /* ItemManaged+Convertable.swift in Sources */,
+				D468A5982CDC05D8002AD433 /* MockJSONLoader.swift in Sources */,
 				D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */,
 				775A3F7D222174A000931A1F /* KNUREItemRepository.swift in Sources */,
-				77D4AAB723AF7BDA00729A93 /* CalendarLayout.swift in Sources */,
 				77D191152552CB23001771F9 /* KNURE.Response.Groups.swift in Sources */,
 				7716FCD922885B3A00615D39 /* UseCase.swift in Sources */,
 				7702914F22081C8800B82CF4 /* DataStorage.xcdatamodeld in Sources */,
@@ -744,8 +758,10 @@
 				775A3F832221779200931A1F /* Lesson.swift in Sources */,
 				D4062C4E2CBC644800B1F6C6 /* Publishers.SectionedEntity.swift in Sources */,
 				775A3F75222172F900931A1F /* LessonRepository.swift in Sources */,
+				D44CDA9E2CD2D40700B05CA5 /* TimetableView.swift in Sources */,
 				773C1D8F22FC5C1000F1FF5C /* LessonManaged+Domain.swift in Sources */,
 				77D4AAB423AF7B4F00729A93 /* TimetableInteractor.swift in Sources */,
+				D44CDA9A2CD2CA0A00B05CA5 /* LessonCollectionViewCell.swift in Sources */,
 				77F16024240313750028966F /* KNURE.Request.swift in Sources */,
 				771A83D722A707E1006964D7 /* Convertable.swift in Sources */,
 				77D191172552CCEC001771F9 /* KNURE.Response.Teachers.swift in Sources */,
@@ -970,6 +986,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -1029,6 +1046,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

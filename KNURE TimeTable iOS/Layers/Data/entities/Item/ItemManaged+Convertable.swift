@@ -14,7 +14,7 @@ extension ItemManaged: Convertable {
 	func convert() -> Item? {
 		guard
 			let timetableType = Item.Kind(rawValue: Int(type)),
-			let identifier = identifier,
+			let identifier = Int64(identifier ?? ""),
 			let title = title
 		else { return nil }
 

@@ -32,25 +32,17 @@ extension KNUREItemRepository: ItemRepository {
 		return coreDataService.observe(request)
 	}
 
-	func localAddedItems() -> AnyPublisher<[Item.Kind: [Item]], Never> {
+	func localAddedItems() -> AnyPublisher<[Item], Never> {
 		let request = NSFetchRequest<ItemManaged>(entityName: "ItemManaged")
 		request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-		return coreDataService.observe(request, sectionNameKeyPath: "type")
-			.map { record in
-				record.reduce(into: [Item.Kind: [Item]]()) { result, entity in
-					if let key = Item.Kind(rawValue: Int(entity.name) ?? 0) {
-						result[key] = entity.items
-					}
-				}
-			}
-			.eraseToAnyPublisher()
+		return coreDataService.observe(request)
 	}
 
 	func local(add items: [Item]) async throws {
 		try await coreDataService.perform { context in
 			for item in items {
 				let managedObject = ItemManaged(context: context)
-				managedObject.identifier = item.identifier
+				managedObject.identifier = String(item.identifier)
 				managedObject.type = Int64(item.type.rawValue)
 				managedObject.title = item.shortName
 				managedObject.fullName = item.fullName

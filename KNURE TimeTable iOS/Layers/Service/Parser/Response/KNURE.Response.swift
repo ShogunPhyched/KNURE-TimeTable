@@ -21,7 +21,7 @@ extension KNURE.Response {
 
 extension KNURE.Response.University {
 	struct Faculty: Decodable {
-		let id: Int
+		let id: Int64
 		let shortName: String
 		let fullName: String
 		@Omissible var directions: [Direction]
@@ -36,7 +36,7 @@ extension KNURE.Response.University {
 			.reduce([]) { result, current in
 				result + current.groups.map {
 					Item(
-						identifier: "\($0.id)",
+						identifier: $0.id,
 						shortName: $0.name,
 						fullName: nil,
 						type: .group,
@@ -54,7 +54,7 @@ extension KNURE.Response.University {
 			.reduce([]) { result, current in
 				result + current.teachers.map {
 					Item(
-						identifier: "\($0.id)",
+						identifier: $0.id,
 						shortName: $0.shortName,
 						fullName: $0.fullName,
 						type: .teacher,
@@ -71,7 +71,7 @@ extension KNURE.Response.University {
 			.reduce([]) { result, current in
 				result + current.auditories.map {
 					Item(
-						identifier: $0.id,
+						identifier: Int64($0.id) ?? 0,
 						shortName: $0.shortName,
 						fullName: nil,
 						type: .auditory,

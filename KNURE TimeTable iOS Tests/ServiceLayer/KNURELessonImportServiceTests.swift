@@ -15,16 +15,16 @@ final class KNURELessonImportServiceTests: XCTestCase {
 	var sut: KNURELessonImportService!
 	var storeWrapper: PersistentContainerWrapper!
 
-    override func setUp() {
-		super.setUp()
+	override func setUp() async throws {
+		try await super.setUp()
 		storeWrapper = PersistentContainerWrapper()
 		sut = KNURELessonImportService(persistentContainer: storeWrapper.persistentContainer)
 	}
 
-    override func tearDown() {
+	override func tearDown() async throws {
 		sut = nil
 		storeWrapper = nil
-		super.tearDown()
+		try await super.tearDown()
     }
 
 	func testSuccessLessonImport() async throws {

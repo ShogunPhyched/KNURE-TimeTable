@@ -31,6 +31,11 @@ struct ItemsListView: View {
 									Label("Delete", systemImage: "trash")
 								}
 							}
+							.onTapGesture {
+								Task {
+									try await interactor.updateTimetable(of: .group, identifier: item.id)
+								}
+							}
 					}
 				}
 			}

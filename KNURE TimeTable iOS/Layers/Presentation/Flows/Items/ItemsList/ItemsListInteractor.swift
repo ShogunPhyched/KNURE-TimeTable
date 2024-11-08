@@ -46,7 +46,7 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 						sectionName: key.presentationValue,
 						items: value.map {
 							ItemCell.Model(
-								id: $0.identifier,
+								id: String($0.identifier),
 								title: $0.shortName,
 								subtitle: String(describing: $0.updated),
 								state: .idle

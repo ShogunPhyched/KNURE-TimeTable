@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="24B83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="GroupManaged" representedClassName="GroupManaged" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -44,12 +44,4 @@
         <attribute name="shortName" optional="YES" attributeType="String"/>
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonManaged" inverseName="type" inverseEntity="LessonManaged"/>
     </entity>
-    <elements>
-        <element name="GroupManaged" positionX="565.12109375" positionY="-126.921875" width="128" height="88"/>
-        <element name="ItemManaged" positionX="-95.609375" positionY="79.79296875" width="126" height="134"/>
-        <element name="LessonManaged" positionX="232.21484375" positionY="13.45703125" width="128" height="178"/>
-        <element name="SubjectManaged" positionX="597.5859375" positionY="-6.41796875" width="128" height="103"/>
-        <element name="TeacherManaged" positionX="596.1015625" positionY="114.2109375" width="128" height="103"/>
-        <element name="TypeManaged" positionX="518.3828125" positionY="263.51953125" width="128" height="118"/>
-    </elements>
 </model>

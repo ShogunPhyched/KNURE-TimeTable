@@ -19,7 +19,7 @@ protocol ItemRepository: Sendable {
 
 	/// <#Description#>
 	/// - Returns: <#description#>
-	func localAddedItems() -> AnyPublisher<[Item.Kind: [Item]], Never>
+	func localAddedItems() -> AnyPublisher<[Item], Never>
 
     /// Save item in persistent store
     ///

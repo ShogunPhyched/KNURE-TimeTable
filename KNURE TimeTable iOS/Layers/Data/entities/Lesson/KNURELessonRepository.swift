@@ -7,7 +7,7 @@
 //
 
 import CoreData
-import Foundation
+import Combine
 
 final class KNURELessonRepository {
 
@@ -28,41 +28,37 @@ final class KNURELessonRepository {
 
 extension KNURELessonRepository: LessonRepository {
 
+	func localTimetable(identifier: String) -> AnyPublisher<[Lesson], Never> {
+		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
+//		request.predicate = NSPredicate(format: "subject.identifier = %@", identifier)
+		request.sortDescriptors = [NSSortDescriptor(key: "startTimestamp", ascending: true)]
+		return coreDataService.observe(request)
+			.eraseToAnyPublisher()
+	}
+
+	func local(fetch identifier: String) async throws -> Lesson {
+		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
+		request.predicate = NSPredicate(format: "subject.identifier = %@", identifier)
+		guard let lesson = try await coreDataService.fetch(request, { $0.convert() }).first else {
+			throw Error.lessonNotFound
+		}
+
+		return lesson
+	}
+
 	func remoteLoadTimetable(of type: Item.Kind, identifier: String) async throws {
 		let request = try KNURE.Request.make(endpoint: .timetable(type, identifier))
 		let decoder = JSONDecoder()
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		let response = try await networkService.execute(request)
-		let data = try networkService.validate(response).transform(from: .windowsCP1251, to: .utf8)
+//		let response = try await networkService.execute(request)
+//		let data = try networkService.validate(response).transform(from: .windowsCP1251, to: .utf8)
+
+		let data = MockJSONLoader.load(json: "timetable", item: .groups)
+
 		try await importService.decode(data, info: ["identifier": identifier])
 	}
 
-//	func localTimetable(identifier: String) -> Observable<[Lesson]> {
-//		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
-//		request.predicate = NSPredicate(format: "itemIdentifier = %@", identifier)
-//		return reactiveCoreDataService.observe(request).map {
-//			$0.map { $0.newValue }
-//		}
-//	}
-
-//	func localLesson(identifier: String) -> Promise<Lesson> {
-//		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
-//		request.predicate = NSPredicate(format: "subjectIdentifier = %@", identifier)
-//		return coreDataService.fetch(request).firstValue.map { $0.domainValue }
-//	}
-//
-//	func localExport(identifier: String, range: Void) -> Promise<Void> {
-//		// TODO: implement
-//		return Promise()
-//	}
-//
-//    func remoteLoadTimetable(identifier: String) {
-//		do {
-//			let path = Bundle.main.path(forResource: "timetable", ofType: "json")
-//			let data = NSData(contentsOfFile: path!)! as Data
-//			try self.importService.decode(data, info: ["identifier": identifier])
-//		} catch {
-//			print(error)
-//		}
-//    }
+	enum Error: Swift.Error {
+		case lessonNotFound
+	}
 }

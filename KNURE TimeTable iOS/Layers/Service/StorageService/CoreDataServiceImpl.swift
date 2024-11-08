@@ -56,10 +56,10 @@ extension CoreDataServiceImpl: CoreDataService {
 		.eraseToAnyPublisher()
 	}
 
-	func observe<T>(
+	func observe<T, R>(
 		_ request: NSFetchRequest<T>,
 		sectionNameKeyPath: String?
-	) -> AnyPublisher<[Publishers.SectionedEntity<T>.Section], Never> where T: NSFetchRequestResult & Convertable {
+	) -> AnyPublisher<[[R]], Never> where T: NSFetchRequestResult & Convertable, R == T.NewType {
 		Publishers.SectionedEntity(
 			request: request,
 			context: persistentContainer.viewContext,

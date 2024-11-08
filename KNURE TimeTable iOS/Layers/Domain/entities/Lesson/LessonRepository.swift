@@ -6,6 +6,8 @@
 //  Copyright © 2019 Vladislav Chapaev. All rights reserved.
 //
 
+import Combine
+
 /// Access to lesson data
 protocol LessonRepository: Sendable {
 
@@ -13,22 +15,13 @@ protocol LessonRepository: Sendable {
 	///
 	/// - Parameter identifier: item identifier
 	/// - Returns: Observable lesson list
-//	func localTimetable(identifier: String) -> Observable<[Lesson]>
-	// PublishSubject
+	func localTimetable(identifier: String) -> AnyPublisher<[Lesson], Never>
 
 	/// Access to single lesson by identifier
 	///
 	/// - Parameter identifier: lesson identifier
 	/// - Returns: Promise with finished operation
-//	func localLesson(identifier: String) -> Promise<Lesson>
-
-	/// Export timetable with item identifier to local Calendar
-	///
-	/// - Parameters:
-	///   - identifier: item identifier
-	///   - range: range for export
-	/// - Returns: Promise with finished operation
-//	func localExport(identifier: String, range: Void) -> Promise<Void>
+	func local(fetch identifier: String) async throws -> Lesson
 
     /// Load and store timetable for item identifier
     ///
