@@ -18,22 +18,24 @@ final class Assembly {
 	private let persistentStoreContainer = DefaultAppConfig().persistentStoreContainer
 	private let urlSessionConfiguration = DefaultAppConfig().urlSessionConfiguration
 
+	private lazy var lessonRepository: KNURELessonRepository = KNURELessonRepository(
+		coreDataService: CoreDataServiceImpl(persistentContainer: persistentStoreContainer),
+		importService: KNURELessonImportService(persistentContainer: persistentStoreContainer),
+		networkService: NetworkServiceImpl(configuration: urlSessionConfiguration)
+	)
+
+	private lazy var itemRepository: KNUREItemRepository = KNUREItemRepository(
+		coreDataService: CoreDataServiceImpl(persistentContainer: persistentStoreContainer),
+		networkService: NetworkServiceImpl(configuration: urlSessionConfiguration)
+	)
+
 	func makeTimetableView() -> TimetableViewController {
 		TimetableViewController(
 			interactor: TimetableInteractor(
-				timetableSubscription: TimetableSubscription(
-					repository: KNURELessonRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						importService: KNURELessonImportService(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					)
-				)
+				addedItemsSubscription: AddedItemsSubscription(repository: itemRepository),
+				timetableSubscription: TimetableSubscription(repository: lessonRepository),
+				updateTimetableUseCase: UpdateTimetableUseCase(lessonRepository: lessonRepository),
+				selectItemUseCase: SelectItemUseCase(repository: itemRepository)
 			)
 		)
 	}
@@ -41,47 +43,10 @@ final class Assembly {
 	func makeItemsView() -> ItemsListView {
 		ItemsListView(
 			interactor: ItemsListInteractor(
-				addedItemsSubscription: AddedItemsSubscription(
-					repository: KNUREItemRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					)
-				),
-				updateTimetableUseCase: UpdateTimetableUseCase(
-					lessonRepository: KNURELessonRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						importService: KNURELessonImportService(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					),
-					itemRepository: KNUREItemRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					)
-				),
-				removeItemUseCase: RemoveItemUseCase(
-					repository: KNUREItemRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					)
-				)
+				addedItemsSubscription: AddedItemsSubscription(repository: itemRepository),
+				updateTimetableUseCase: UpdateTimetableUseCase(lessonRepository: lessonRepository),
+				removeItemUseCase: RemoveItemUseCase(repository: itemRepository),
+				selectItemUseCase: SelectItemUseCase(repository: itemRepository)
 			)
 		)
 	}
@@ -90,26 +55,9 @@ final class Assembly {
 		AddItemsListView(
 			path: path,
 			interactor: AddItemsInteractor(
-				itemsUseCase: ItemsUseCase(
-					repository: KNUREItemRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					)
-				),
-				saveItemUseCase: SaveItemUseCase(
-					repository: KNUREItemRepository(
-						coreDataService: CoreDataServiceImpl(
-							persistentContainer: persistentStoreContainer
-						),
-						networkService: NetworkServiceImpl(
-							configuration: urlSessionConfiguration
-						)
-					)
-				)
+				itemsUseCase: ItemsUseCase(repository: itemRepository),
+				saveItemUseCase: SaveItemUseCase(repository: itemRepository),
+				addedItemsUseCase: AddedItemsUseCase(repository: itemRepository)
 			),
 			itemType: itemType
 		)

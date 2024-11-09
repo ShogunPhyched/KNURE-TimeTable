@@ -8,8 +8,7 @@
 
 import Combine
 
-@MainActor
-protocol ItemsListInteractorInput {
+protocol ItemsListInteractorInput: Sendable {
 
 	func observeAddedItems() -> AnyPublisher<[ItemsListView.Model], Never>
 
@@ -18,21 +17,23 @@ protocol ItemsListInteractorInput {
 	func removeItem(identifier: String) async throws
 }
 
-@MainActor
 final class ItemsListInteractor {
 
-	private let addedItemsSubscription: any Subscribing<Void, [Item.Kind: [Item]]>
+	private let addedItemsSubscription: any Subscribing<Void, [Item]>
 	private let updateTimetableUseCase: any UseCase<UpdateTimetableUseCase.Query, Void>
 	private let removeItemUseCase: any UseCase<RemoveItemUseCase.Request, Void>
+	private let selectItemUseCase: any UseCase<String, Void>
 
 	init(
-		addedItemsSubscription: any Subscribing<Void, [Item.Kind: [Item]]>,
+		addedItemsSubscription: any Subscribing<Void, [Item]>,
 		updateTimetableUseCase: any UseCase<UpdateTimetableUseCase.Query, Void>,
-		removeItemUseCase: any UseCase<RemoveItemUseCase.Request, Void>
+		removeItemUseCase: any UseCase<RemoveItemUseCase.Request, Void>,
+		selectItemUseCase: any UseCase<String, Void>
 	) {
 		self.addedItemsSubscription = addedItemsSubscription
 		self.updateTimetableUseCase = updateTimetableUseCase
 		self.removeItemUseCase = removeItemUseCase
+		self.selectItemUseCase = selectItemUseCase
 	}
 }
 
@@ -40,6 +41,7 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 
 	func observeAddedItems() -> AnyPublisher<[ItemsListView.Model], Never> {
 		addedItemsSubscription.subscribe(())
+			.map { Dictionary(grouping: $0, by: \.type) }
 			.map { dictionary in
 				dictionary.map { key, value in
 					ItemsListView.Model(
@@ -60,6 +62,7 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 
 	func updateTimetable(of type: Item.Kind, identifier: String) async throws {
 		try await updateTimetableUseCase.execute(.init(identifier: identifier, type: type))
+		try await selectItemUseCase.execute(identifier)
 	}
 
 	func removeItem(identifier: String) async throws {

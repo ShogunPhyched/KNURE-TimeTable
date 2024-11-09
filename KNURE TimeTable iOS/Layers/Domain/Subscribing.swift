@@ -8,7 +8,7 @@
 
 import Combine
 
-protocol Subscribing<Request, Response> {
+protocol Subscribing<Request, Response>: Sendable {
 
 	associatedtype Request
 	associatedtype Response

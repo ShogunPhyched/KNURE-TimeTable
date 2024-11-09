@@ -20,3 +20,13 @@ final class MockJSONLoader {
 		return NSData(contentsOfFile: path!)! as Data
 	}
 }
+
+extension Item.Kind {
+	var cast: MockJSONLoader.ItemType {
+		switch self {
+			case .group: return .groups
+			case .teacher: return .teachers
+			case .auditory: return .auditories
+		}
+	}
+}

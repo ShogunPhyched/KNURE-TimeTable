@@ -12,7 +12,7 @@ import Foundation
 struct Item: Sendable, Hashable {
 
 	/// unique value to store item
-	let identifier: Int64
+	let identifier: String
 
 	/// short name to represent entity
 	let shortName: String

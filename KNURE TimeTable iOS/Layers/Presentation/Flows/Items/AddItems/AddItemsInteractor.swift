@@ -15,20 +15,28 @@ final class AddItemsInteractor {
 
 	private let itemsUseCase: any UseCase<Item.Kind, [Item]>
 	private let saveItemUseCase: any UseCase<Item, Void>
+	private let addedItemsUseCase: any UseCase<Void, [String]>
 
 	init(
 		itemsUseCase: any UseCase<Item.Kind, [Item]>,
-		saveItemUseCase: any UseCase<Item, Void>
+		saveItemUseCase: any UseCase<Item, Void>,
+		addedItemsUseCase: any UseCase<Void, [String]>
 	) {
 		self.itemsUseCase = itemsUseCase
 		self.saveItemUseCase = saveItemUseCase
+		self.addedItemsUseCase = addedItemsUseCase
 	}
 }
 
 extension AddItemsInteractor: AddItemsInteractorInput {
 	func obtainItems(kind: Item.Kind) async throws -> [AddItemsListView.Model] {
-		try await itemsUseCase.execute(kind).map {
-			AddItemsListView.Model(title: $0.shortName, selected: $0.selected, item: $0)
+		let addedItemsIdentifiers = try await addedItemsUseCase.execute(())
+		return try await itemsUseCase.execute(kind).map { item in
+			AddItemsListView.Model(
+				title: item.shortName,
+				selected: addedItemsIdentifiers.contains(item.identifier),
+				item: item
+			)
 		}
 	}
 

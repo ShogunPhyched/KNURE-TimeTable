@@ -18,10 +18,8 @@ struct AddItemCell: View {
 				if model.selected {
 					Text(model.title)
 						.fontWeight(.bold)
-						.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
 				} else {
 					Text(model.title)
-						.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0))
 				}
 
 			}
@@ -29,7 +27,6 @@ struct AddItemCell: View {
 			if model.selected {
 				Image(systemName: "checkmark")
 					.foregroundStyle(.blue)
-					.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
 			}
 		}
     }

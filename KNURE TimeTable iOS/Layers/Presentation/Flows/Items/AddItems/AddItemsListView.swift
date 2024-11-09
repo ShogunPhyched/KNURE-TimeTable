@@ -24,37 +24,37 @@ struct AddItemsListView: View {
 			if viewModel.isEmpty {
 				ProgressView()
 					.controlSize(.large)
-			} else {
-				List(viewModel) { record in
-					Button {
-						Task {
-							try await interactor.save(item: record.item)
-							path.removeAll()
-						}
-					} label: {
-						AddItemCell(model: .init(title: record.title, selected: record.selected))
+			}
+			List(viewModel) { record in
+				Button {
+					guard !record.selected else { return }
+					Task {
+						try await interactor.save(item: record.item)
+						path.removeAll()
 					}
+				} label: {
+					AddItemCell(model: .init(title: record.title, selected: record.selected))
 				}
-				.navigationTitle("Add Items List")
-				.listStyle(.plain)
-				.task {
-					do {
-						viewModel = try await interactor.obtainItems(kind: itemType)
-					} catch {
-						isErrorOccured = true
-					}
+			}
+			.navigationTitle("Add Items List")
+			.listStyle(.plain)
+			.task {
+				do {
+					viewModel = try await interactor.obtainItems(kind: itemType)
+				} catch {
+					isErrorOccured = true
 				}
-				.searchable(text: $searchText)
-				.alert("An Error has occured", isPresented: $isErrorOccured) {
-					Button(role: .cancel) {
-						isErrorOccured = false
-					} label: {
-						Text("Ok")
-					}
+			}
+			.searchable(text: $searchText)
+			.alert("An Error has occured", isPresented: $isErrorOccured) {
+				Button(role: .cancel) {
+					isErrorOccured = false
+				} label: {
+					Text("Ok")
 				}
 			}
 		}
-    }
+	}
 }
 
 extension AddItemsListView {

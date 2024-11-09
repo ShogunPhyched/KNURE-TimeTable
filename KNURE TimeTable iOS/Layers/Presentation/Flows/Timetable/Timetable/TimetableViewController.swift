@@ -28,6 +28,7 @@ final class TimetableViewController: UIViewController {
 
 	private var cancellables: Set<AnyCancellable> = []
 	private let controller: TimetableCollectionController = .init()
+	private let viewModel: TimetableViewModel = .init()
 
 	private let interactor: TimetableInteractorInput
 
@@ -50,11 +51,20 @@ final class TimetableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		interactor.observeTimetableUpdates(identifier: "5259428")
+		viewModel.$addedItems
+			.filter { $0.contains(where: \.selected) }
+			.compactMap(\.first?.identifier)
+			.map { identifier in
+				self.interactor.observeTimetableUpdates(identifier: identifier)
+			}
+			.switchToLatest()
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] model in
 				self?.controller.update(with: model)
 			}
 			.store(in: &cancellables)
+
+		interactor.observeAddedItems()
+			.assign(to: &viewModel.$addedItems)
 	}
 }

@@ -25,17 +25,16 @@ final class KNUREItemRepository {
 
 extension KNUREItemRepository: ItemRepository {
 
-	func localSelectedItems() -> AnyPublisher<[Item], Never> {
-		let request = NSFetchRequest<ItemManaged>(entityName: "ItemManaged")
-		request.predicate = NSPredicate(format: "selected = %@", NSNumber(value: true))
-		request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-		return coreDataService.observe(request)
-	}
-
 	func localAddedItems() -> AnyPublisher<[Item], Never> {
 		let request = NSFetchRequest<ItemManaged>(entityName: "ItemManaged")
 		request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 		return coreDataService.observe(request)
+	}
+
+	func localAddedItemsIdentifiers() async throws -> [String] {
+		let request = NSFetchRequest<ItemManaged>(entityName: "ItemManaged")
+		request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+		return try await coreDataService.fetch(request, { $0.convert() }).map(\.identifier)
 	}
 
 	func local(add items: [Item]) async throws {
@@ -56,12 +55,12 @@ extension KNUREItemRepository: ItemRepository {
 		try await coreDataService.delete(request)
 	}
 
-	func local(setLastUpdate date: Date, for identifier: String) async throws {
+	func local(select identifier: String) async throws {
 		let request = NSFetchRequest<ItemManaged>(entityName: "ItemManaged")
-		request.predicate = NSPredicate(format: "identifier = %@", identifier)
+		request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 		try await coreDataService.perform { context in
 			try context.fetch(request).forEach { item in
-				item.lastUpdateTimestamp = date.timeIntervalSince1970
+				item.selected = item.identifier == identifier
 			}
 		}
 	}
@@ -71,8 +70,9 @@ extension KNUREItemRepository: ItemRepository {
 
 		let decoder = JSONDecoder()
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		let response = try await networkService.execute(request)
-		let data = try networkService.validate(response).transform(from: .windowsCP1251, to: .utf8)
+//		let response = try await networkService.execute(request)
+//		let data = try networkService.validate(response).transform(from: .windowsCP1251, to: .utf8)
+		let data = MockJSONLoader.load(json: "valid", item: type.cast)
 		let decoded = try decoder.decode(KNURE.Response.self, from: data)
 		return transform(response: decoded, by: type)
 	}

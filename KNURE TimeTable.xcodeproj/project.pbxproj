@@ -30,7 +30,6 @@
 		775A3F85222177AA00931A1F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F84222177AA00931A1F /* Item.swift */; };
 		775A3F8D2221797800931A1F /* SaveItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F8C2221797800931A1F /* SaveItemUseCase.swift */; };
 		775A3F8F222179A000931A1F /* RemoveItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F8E222179A000931A1F /* RemoveItemUseCase.swift */; };
-		775A3F91222179CD00931A1F /* SelectedItemsSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F90222179CD00931A1F /* SelectedItemsSubscription.swift */; };
 		775A3F9522217CB200931A1F /* TimetableSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F9422217CB200931A1F /* TimetableSubscription.swift */; };
 		775A3F9922217FD700931A1F /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775A3F9822217FD700931A1F /* Main.swift */; };
 		7766B3052561466C00CE638F /* KNURE.Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7766B3042561466C00CE638F /* KNURE.Response.swift */; };
@@ -63,6 +62,8 @@
 		D466DD8F2CAB4B8C002A97BB /* ItemsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */; };
 		D468A5982CDC05D8002AD433 /* MockJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7783E9FC2544267F00198C9A /* MockJSONLoader.swift */; };
 		D468A5992CDC0614002AD433 /* Mocks in Resources */ = {isa = PBXBuildFile; fileRef = 7753DA51253340B20051A997 /* Mocks */; };
+		D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */; };
+		D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */; };
 		D469AADE2B8D13ED0091D91D /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADD2B8D13ED0091D91D /* ItemsListView.swift */; };
 		D469AAE02B8D20CE0091D91D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADF2B8D20CE0091D91D /* ItemCell.swift */; };
 		D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474E1D92CC2ECD1009A0709 /* Assembly.swift */; };
@@ -138,7 +139,6 @@
 		775A3F84222177AA00931A1F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		775A3F8C2221797800931A1F /* SaveItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveItemUseCase.swift; sourceTree = "<group>"; };
 		775A3F8E222179A000931A1F /* RemoveItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveItemUseCase.swift; sourceTree = "<group>"; };
-		775A3F90222179CD00931A1F /* SelectedItemsSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItemsSubscription.swift; sourceTree = "<group>"; };
 		775A3F9422217CB200931A1F /* TimetableSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSubscription.swift; sourceTree = "<group>"; };
 		775A3F9822217FD700931A1F /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		7766B3042561466C00CE638F /* KNURE.Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Response.swift; sourceTree = "<group>"; };
@@ -173,6 +173,8 @@
 		D466DD8A2CAB467D002A97BB /* Subscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscribing.swift; sourceTree = "<group>"; };
 		D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsSubscription.swift; sourceTree = "<group>"; };
 		D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListInteractor.swift; sourceTree = "<group>"; };
+		D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemUseCase.swift; sourceTree = "<group>"; };
+		D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsUseCase.swift; sourceTree = "<group>"; };
 		D469AADD2B8D13ED0091D91D /* ItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListView.swift; sourceTree = "<group>"; };
 		D469AADF2B8D20CE0091D91D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		D474E1D92CC2ECD1009A0709 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -322,8 +324,9 @@
 		775A3F8B2221791200931A1F /* usecases */ = {
 			isa = PBXGroup;
 			children = (
+				D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */,
+				D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */,
 				D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */,
-				775A3F90222179CD00931A1F /* SelectedItemsSubscription.swift */,
 				775A3F8C2221797800931A1F /* SaveItemUseCase.swift */,
 				775A3F8E222179A000931A1F /* RemoveItemUseCase.swift */,
 				77DC23C823C48FDA00A40D57 /* ItemsUseCase.swift */,
@@ -712,12 +715,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				775A3F91222179CD00931A1F /* SelectedItemsSubscription.swift in Sources */,
 				7766B3052561466C00CE638F /* KNURE.Response.swift in Sources */,
 				D4ACC83C2B8E7AC000AE732A /* AddItemCell.swift in Sources */,
 				77D4AAB223AF7B3D00729A93 /* TimetableViewModel.swift in Sources */,
 				7752F9392247E46E003DC9FE /* CoreDataService.swift in Sources */,
 				77713ED723F80D70006E3E4C /* KNURELessonImportService.swift in Sources */,
+				D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */,
 				7752F93D2247F018003DC9FE /* CoreDataServiceImpl.swift in Sources */,
 				77BEB5EB25618792002AB818 /* KNURE.Response.Lesson.swift in Sources */,
 				D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */,
@@ -739,6 +742,7 @@
 				775A3F9922217FD700931A1F /* Main.swift in Sources */,
 				771A83D522A7038C006964D7 /* ItemManaged+Convertable.swift in Sources */,
 				D468A5982CDC05D8002AD433 /* MockJSONLoader.swift in Sources */,
+				D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */,
 				D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */,
 				775A3F7D222174A000931A1F /* KNUREItemRepository.swift in Sources */,
 				77D191152552CB23001771F9 /* KNURE.Response.Groups.swift in Sources */,

@@ -19,9 +19,8 @@ final class AddedItemsSubscription {
 
 extension AddedItemsSubscription: Subscribing {
 
-	func subscribe(_ request: Void) -> AnyPublisher<[Item.Kind: [Item]], Never> {
+	func subscribe(_ request: Void) -> AnyPublisher<[Item], Never> {
 		repository.localAddedItems()
-			.map { Dictionary(grouping: $0, by: \.type) }
 			.eraseToAnyPublisher()
 	}
 }

@@ -12,14 +12,13 @@ import Foundation
 /// Access to timetable items
 protocol ItemRepository: Sendable {
 
-    /// Observe items that is been selected
-    ///
-    /// - Returns: Observable items list
-    func localSelectedItems() -> AnyPublisher<[Item], Never>
-
 	/// <#Description#>
 	/// - Returns: <#description#>
 	func localAddedItems() -> AnyPublisher<[Item], Never>
+	
+	/// <#Description#>
+	/// - Returns: <#description#>
+	func localAddedItemsIdentifiers() async throws -> [String]
 
     /// Save item in persistent store
     ///
@@ -32,8 +31,10 @@ protocol ItemRepository: Sendable {
     /// - Parameter identifier: item identifier
     /// - Returns: Promise with finished operation
 	func local(delete identifier: String) async throws
-
-	func local(setLastUpdate date: Date, for identifier: String) async throws
+	
+	/// <#Description#>
+	/// - Parameter identifier: <#identifier description#>
+	func local(select identifier: String) async throws
 
 	/// <#Description#>
 	/// - Parameter type: <#type description#>

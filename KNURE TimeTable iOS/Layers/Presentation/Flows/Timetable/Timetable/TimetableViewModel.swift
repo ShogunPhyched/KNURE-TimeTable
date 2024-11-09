@@ -6,5 +6,8 @@
 //  Copyright © 2019 Vladislav Chapaev. All rights reserved.
 //
 
-struct TimetableViewModel {
+import Combine
+
+final class TimetableViewModel {
+	@Published var addedItems: [Item] = []
 }

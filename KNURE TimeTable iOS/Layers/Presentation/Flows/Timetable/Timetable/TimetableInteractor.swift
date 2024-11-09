@@ -9,27 +9,56 @@
 import Combine
 
 protocol TimetableInteractorInput {
-	func updateTimetable(identifier: String) async throws
 
-	func observeTimetableUpdates(identifier: String) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never>
+	func observeAddedItems() -> AnyPublisher<[Item], Never>
+
+	func updateTimetable(identifier: String, type: Item.Kind) async throws
+
+	func selectItem(identifier: String) async throws
+
+	func observeTimetableUpdates(
+		identifier: String
+	) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never>
 }
 
 final class TimetableInteractor {
 
+	private let addedItemsSubscription: any Subscribing<Void, [Item]>
 	private let timetableSubscription: any Subscribing<String, [Lesson]>
+	private let updateTimetableUseCase: any UseCase<UpdateTimetableUseCase.Query, Void>
+	private let selectItemUseCase: any UseCase<String, Void>
 
-	init(timetableSubscription: any Subscribing<String, [Lesson]>) {
+	init(
+		addedItemsSubscription: any Subscribing<Void, [Item]>,
+		timetableSubscription: any Subscribing<String, [Lesson]>,
+		updateTimetableUseCase: any UseCase<UpdateTimetableUseCase.Query, Void>,
+		selectItemUseCase: any UseCase<String, Void>
+	) {
+		self.addedItemsSubscription = addedItemsSubscription
 		self.timetableSubscription = timetableSubscription
+		self.updateTimetableUseCase = updateTimetableUseCase
+		self.selectItemUseCase = selectItemUseCase
 	}
-
 }
 
 extension TimetableInteractor: TimetableInteractorInput {
-	func updateTimetable(identifier: String) async throws {
-//		_ = updateTimetableUseCase.execute(identifier)
+
+	func observeAddedItems() -> AnyPublisher<[Item], Never> {
+		addedItemsSubscription.subscribe(())
+			.eraseToAnyPublisher()
 	}
 
-	func observeTimetableUpdates(identifier: String) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never> {
+	func updateTimetable(identifier: String, type: Item.Kind) async throws {
+		try await updateTimetableUseCase.execute(.init(identifier: identifier, type: type))
+	}
+
+	func selectItem(identifier: String) async throws {
+		try await selectItemUseCase.execute(identifier)
+	}
+
+	func observeTimetableUpdates(
+		identifier: String
+	) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never> {
 		timetableSubscription
 			.subscribe(identifier)
 			.map { lessons in
