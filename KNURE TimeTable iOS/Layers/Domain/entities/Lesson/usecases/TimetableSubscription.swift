@@ -19,7 +19,7 @@ final class TimetableSubscription {
 
 extension TimetableSubscription: Subscribing {
 
-	func subscribe(_ request: String) -> AnyPublisher<[Lesson], Never> {
+	func subscribe(_ request: String) -> AnyPublisher<[[Lesson]], Never> {
 		repository.localTimetable(identifier: request)
 	}
 }

@@ -52,7 +52,6 @@
 		77F160222402FA110028966F /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F160212402FA110028966F /* HTTP.swift */; };
 		77F16024240313750028966F /* KNURE.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16023240313750028966F /* KNURE.Request.swift */; };
 		D4062C4C2CBC49BD00B1F6C6 /* AddItemsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */; };
-		D4062C4E2CBC644800B1F6C6 /* Publishers.SectionedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4D2CBC642900B1F6C6 /* Publishers.SectionedEntity.swift */; };
 		D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */; };
 		D44CDA9A2CD2CA0A00B05CA5 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */; };
 		D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */; };
@@ -64,6 +63,8 @@
 		D468A5992CDC0614002AD433 /* Mocks in Resources */ = {isa = PBXBuildFile; fileRef = 7753DA51253340B20051A997 /* Mocks */; };
 		D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */; };
 		D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */; };
+		D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */; };
+		D468A5A12CDFFB5E002AD433 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A5A02CDFFB58002AD433 /* Formatters.swift */; };
 		D469AADE2B8D13ED0091D91D /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADD2B8D13ED0091D91D /* ItemsListView.swift */; };
 		D469AAE02B8D20CE0091D91D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADF2B8D20CE0091D91D /* ItemCell.swift */; };
 		D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474E1D92CC2ECD1009A0709 /* Assembly.swift */; };
@@ -165,7 +166,6 @@
 		77F16023240313750028966F /* KNURE.Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Request.swift; sourceTree = "<group>"; };
 		C33FCC631819965300328F6D /* KNURE TimeTable iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KNURE TimeTable iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsInteractor.swift; sourceTree = "<group>"; };
-		D4062C4D2CBC642900B1F6C6 /* Publishers.SectionedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publishers.SectionedEntity.swift; sourceTree = "<group>"; };
 		D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCollectionController.swift; sourceTree = "<group>"; };
 		D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewCell.swift; sourceTree = "<group>"; };
 		D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayColumnHeaderView.swift; sourceTree = "<group>"; };
@@ -175,6 +175,8 @@
 		D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListInteractor.swift; sourceTree = "<group>"; };
 		D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemUseCase.swift; sourceTree = "<group>"; };
 		D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsUseCase.swift; sourceTree = "<group>"; };
+		D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeColumnHeader.swift; sourceTree = "<group>"; };
+		D468A5A02CDFFB58002AD433 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D469AADD2B8D13ED0091D91D /* ItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListView.swift; sourceTree = "<group>"; };
 		D469AADF2B8D20CE0091D91D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		D474E1D92CC2ECD1009A0709 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		770290F422081C8800B82CF4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D468A5A02CDFFB58002AD433 /* Formatters.swift */,
 				D44CDA962CD2C7BA00B05CA5 /* Collection */,
 				D48A24BD2C1637DA0081BF3A /* Flows */,
 				7702912222081C8800B82CF4 /* LaunchScreen.xib */,
@@ -266,7 +269,6 @@
 		770D9F7B223E41E40037C5B1 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
-				D4062C4D2CBC642900B1F6C6 /* Publishers.SectionedEntity.swift */,
 				7710B0C424D06B7200BE4E2D /* Publishers.Entity.swift */,
 				7752F9382247E46E003DC9FE /* CoreDataService.swift */,
 				7752F93C2247F018003DC9FE /* CoreDataServiceImpl.swift */,
@@ -481,6 +483,7 @@
 		D44CDA962CD2C7BA00B05CA5 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */,
 				D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */,
 				D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */,
 				D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */,
@@ -730,6 +733,7 @@
 				7753DA56253348530051A997 /* Omissible.swift in Sources */,
 				775A3F8F222179A000931A1F /* RemoveItemUseCase.swift in Sources */,
 				7710B0C524D06B7200BE4E2D /* Publishers.Entity.swift in Sources */,
+				D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */,
 				D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionController.swift in Sources */,
 				775A3F85222177AA00931A1F /* Item.swift in Sources */,
 				77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */,
@@ -758,9 +762,9 @@
 				D469AAE02B8D20CE0091D91D /* ItemCell.swift in Sources */,
 				D4ACC83A2B8E7AB200AE732A /* AddItemsListView.swift in Sources */,
 				77F160222402FA110028966F /* HTTP.swift in Sources */,
+				D468A5A12CDFFB5E002AD433 /* Formatters.swift in Sources */,
 				7778E46822D1096000477BFE /* Configuration.swift in Sources */,
 				775A3F832221779200931A1F /* Lesson.swift in Sources */,
-				D4062C4E2CBC644800B1F6C6 /* Publishers.SectionedEntity.swift in Sources */,
 				775A3F75222172F900931A1F /* LessonRepository.swift in Sources */,
 				D44CDA9E2CD2D40700B05CA5 /* TimetableView.swift in Sources */,
 				773C1D8F22FC5C1000F1FF5C /* LessonManaged+Domain.swift in Sources */,

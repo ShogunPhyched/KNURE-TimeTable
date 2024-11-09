@@ -24,13 +24,13 @@ protocol TimetableInteractorInput {
 final class TimetableInteractor {
 
 	private let addedItemsSubscription: any Subscribing<Void, [Item]>
-	private let timetableSubscription: any Subscribing<String, [Lesson]>
+	private let timetableSubscription: any Subscribing<String, [[Lesson]]>
 	private let updateTimetableUseCase: any UseCase<UpdateTimetableUseCase.Query, Void>
 	private let selectItemUseCase: any UseCase<String, Void>
 
 	init(
 		addedItemsSubscription: any Subscribing<Void, [Item]>,
-		timetableSubscription: any Subscribing<String, [Lesson]>,
+		timetableSubscription: any Subscribing<String, [[Lesson]]>,
 		updateTimetableUseCase: any UseCase<UpdateTimetableUseCase.Query, Void>,
 		selectItemUseCase: any UseCase<String, Void>
 	) {
@@ -61,19 +61,24 @@ extension TimetableInteractor: TimetableInteractorInput {
 	) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never> {
 		timetableSubscription
 			.subscribe(identifier)
-			.map { lessons in
-				lessons.map { lesson in
-					LessonCollectionViewCellModel(
-						subjectId: lesson.subject.identifier ?? "",
-						baseIdentifier: lesson.type.baseIdentifier,
-						title: lesson.subject.brief ?? "",
-						subtitle: lesson.auditory,
-						startTime: lesson.start,
-						endTime: lesson.end
-					)
+			.map { timetable in
+				let sections = timetable.map { lessons in
+					let models = lessons.map { lesson in
+						LessonCollectionViewCellModel(
+							subjectId: lesson.subject.identifier ?? "",
+							baseIdentifier: lesson.type.baseIdentifier,
+							title: lesson.subject.brief ?? "",
+							subtitle: lesson.auditory,
+							startTime: lesson.start,
+							endTime: lesson.end
+						)
+					}
+
+					return TimetableCollectionController.TimetableModel.Section(cellModels: models)
 				}
+
+				return TimetableCollectionController.TimetableModel(sections: sections)
 			}
-			.map(TimetableCollectionController.TimetableModel.init(cellModels:))
 			.eraseToAnyPublisher()
 	}
 }

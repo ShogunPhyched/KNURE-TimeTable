@@ -65,3 +65,9 @@ extension Lesson {
 		let fullName: String
 	}
 }
+
+extension Lesson {
+	var day: Date {
+		Calendar.current.startOfDay(for: start)
+	}
+}

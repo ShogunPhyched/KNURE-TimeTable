@@ -12,7 +12,7 @@
         <attribute name="selected" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String" defaultValueString="title"/>
         <attribute name="type" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LessonManaged" inverseName="items" inverseEntity="LessonManaged"/>
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LessonManaged" inverseName="item" inverseEntity="LessonManaged"/>
     </entity>
     <entity name="LessonManaged" representedClassName="LessonManaged" syncable="YES" codeGenerationType="class">
         <attribute name="auditory" optional="YES" attributeType="String"/>
@@ -20,7 +20,7 @@
         <attribute name="numberPair" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startTimestamp" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GroupManaged" inverseName="lessons" inverseEntity="GroupManaged"/>
-        <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemManaged" inverseName="lessons" inverseEntity="ItemManaged"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemManaged" inverseName="lessons" inverseEntity="ItemManaged"/>
         <relationship name="subject" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SubjectManaged" inverseName="lessons" inverseEntity="SubjectManaged"/>
         <relationship name="teachers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TeacherManaged" inverseName="lessons" inverseEntity="TeacherManaged"/>
         <relationship name="type" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TypeManaged" inverseName="lessons" inverseEntity="TypeManaged"/>

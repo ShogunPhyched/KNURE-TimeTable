@@ -36,8 +36,8 @@ final class LessonCollectionViewCell: UICollectionViewCell {
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
-			stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-			stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
+			stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
 			stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
 			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 		])

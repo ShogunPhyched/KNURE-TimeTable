@@ -28,17 +28,18 @@ final class KNURELessonRepository {
 
 extension KNURELessonRepository: LessonRepository {
 
-	func localTimetable(identifier: String) -> AnyPublisher<[Lesson], Never> {
+	func localTimetable(identifier: String) -> AnyPublisher<[[Lesson]], Never> {
 		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
-//		request.predicate = NSPredicate(format: "subject.identifier = %@", identifier)
+		request.predicate = NSPredicate(format: "item.identifier = %@", identifier)
 		request.sortDescriptors = [NSSortDescriptor(key: "startTimestamp", ascending: true)]
 		return coreDataService.observe(request)
+			.map { $0.grouped(by: \.day) }
 			.eraseToAnyPublisher()
 	}
 
 	func local(fetch identifier: String) async throws -> Lesson {
 		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
-		request.predicate = NSPredicate(format: "subject.identifier = %@", identifier)
+		request.predicate = NSPredicate(format: "item.identifier = %@", identifier)
 		guard let lesson = try await coreDataService.fetch(request, { $0.convert() }).first else {
 			throw Error.lessonNotFound
 		}
@@ -60,5 +61,17 @@ extension KNURELessonRepository: LessonRepository {
 
 	enum Error: Swift.Error {
 		case lessonNotFound
+	}
+}
+
+private extension Sequence {
+	func grouped<T: Equatable>(by block: (Element) throws -> T) rethrows -> [[Element]] {
+		return try reduce(into: []) { result, element in
+			if let lastElement = result.last?.last, try block(lastElement) == block(element) {
+				result[result.index(before: result.endIndex)].append(element)
+			} else {
+				result.append([element])
+			}
+		}
 	}
 }

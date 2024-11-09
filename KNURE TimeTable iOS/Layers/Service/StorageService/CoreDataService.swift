@@ -22,16 +22,6 @@ protocol CoreDataService: Sendable {
 	/// <#Description#>
 	/// - Parameters:
 	///   - request: <#request description#>
-	///   - sectionNameKeyPath: <#sectionNameKeyPath description#>
-	/// - Returns: <#description#>
-	func observe<T, R: Sendable>(
-		_ request: NSFetchRequest<T>,
-		sectionNameKeyPath: String?
-	) -> AnyPublisher<[[R]], Never> where T: NSFetchRequestResult & Convertable, R == T.NewType
-
-	/// <#Description#>
-	/// - Parameters:
-	///   - request: <#request description#>
 	///   - convert: <#convert description#>
 	func fetch<T, R: Sendable>(
 		_ request: NSFetchRequest<T>,
