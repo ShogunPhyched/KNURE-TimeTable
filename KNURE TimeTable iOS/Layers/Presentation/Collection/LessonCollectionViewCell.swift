@@ -15,6 +15,7 @@ struct LessonCollectionViewCellModel: Hashable {
 	let subtitle: String
 	let startTime: Date
 	let endTime: Date
+	let number: Int
 }
 
 final class LessonCollectionViewCell: UICollectionViewCell {
@@ -38,8 +39,8 @@ final class LessonCollectionViewCell: UICollectionViewCell {
 		NSLayoutConstraint.activate([
 			stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
 			stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
-			stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+			stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4)
 		])
 	}
 

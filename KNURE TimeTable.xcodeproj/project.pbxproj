@@ -65,6 +65,7 @@
 		D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */; };
 		D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */; };
 		D468A5A12CDFFB5E002AD433 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A5A02CDFFB58002AD433 /* Formatters.swift */; };
+		D468A5A32CE90964002AD433 /* Sequence+Grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A5A22CE9095B002AD433 /* Sequence+Grouping.swift */; };
 		D469AADE2B8D13ED0091D91D /* ItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADD2B8D13ED0091D91D /* ItemsListView.swift */; };
 		D469AAE02B8D20CE0091D91D /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D469AADF2B8D20CE0091D91D /* ItemCell.swift */; };
 		D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D474E1D92CC2ECD1009A0709 /* Assembly.swift */; };
@@ -177,6 +178,7 @@
 		D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsUseCase.swift; sourceTree = "<group>"; };
 		D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeColumnHeader.swift; sourceTree = "<group>"; };
 		D468A5A02CDFFB58002AD433 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		D468A5A22CE9095B002AD433 /* Sequence+Grouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Grouping.swift"; sourceTree = "<group>"; };
 		D469AADD2B8D13ED0091D91D /* ItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListView.swift; sourceTree = "<group>"; };
 		D469AADF2B8D20CE0091D91D /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		D474E1D92CC2ECD1009A0709 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		770290E122081C8700B82CF4 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				D468A5A22CE9095B002AD433 /* Sequence+Grouping.swift */,
 				775A3F9822217FD700931A1F /* Main.swift */,
 				7778E46722D1096000477BFE /* Configuration.swift */,
 				771A83D622A707E1006964D7 /* Convertable.swift */,
@@ -751,6 +754,7 @@
 				775A3F7D222174A000931A1F /* KNUREItemRepository.swift in Sources */,
 				77D191152552CB23001771F9 /* KNURE.Response.Groups.swift in Sources */,
 				7716FCD922885B3A00615D39 /* UseCase.swift in Sources */,
+				D468A5A32CE90964002AD433 /* Sequence+Grouping.swift in Sources */,
 				7702914F22081C8800B82CF4 /* DataStorage.xcdatamodeld in Sources */,
 				7716FCDB22885C4E00615D39 /* UpdateTimetableUseCase.swift in Sources */,
 				D469AADE2B8D13ED0091D91D /* ItemsListView.swift in Sources */,

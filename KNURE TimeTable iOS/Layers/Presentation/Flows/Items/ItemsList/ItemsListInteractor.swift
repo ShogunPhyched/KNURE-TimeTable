@@ -48,9 +48,9 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 						sectionName: key.presentationValue,
 						items: value.map {
 							ItemCell.Model(
-								id: String($0.identifier),
+								id: $0.identifier,
 								title: $0.shortName,
-								subtitle: String(describing: $0.updated),
+								subtitle: self.subtile(for: $0),
 								state: .idle
 							)
 						}
@@ -67,5 +67,14 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 
 	func removeItem(identifier: String) async throws {
 		try await removeItemUseCase.execute(identifier)
+	}
+}
+
+private extension ItemsListInteractor {
+	func subtile(for item: Item) -> String {
+		if let updated = item.updated {
+			return "Updated: " + Formatters.itemFormatter.string(from: updated)
+		}
+		return "Not updated"
 	}
 }

@@ -27,58 +27,87 @@ final class TimetableCollectionController {
 			snapshot.appendSections([section])
 			snapshot.appendItems(section.cellModels)
 		}
-		dataSource.apply(snapshot, animatingDifferences: false)
+		dataSource.apply(snapshot, animatingDifferences: true)
 	}
 
 	@MainActor
 	func make() -> UICollectionView {
 		let configuration = UICollectionViewCompositionalLayoutConfiguration()
-		configuration.scrollDirection = .vertical
 		let layout = UICollectionViewCompositionalLayout(sectionProvider: { index, environment in
 
-			let item = NSCollectionLayoutItem(
+			guard
+				let itemSection = self.dataSource.sectionIdentifier(for: index)
+			else {
+				fatalError()
+			}
+
+			let timeSupplementaryItem: NSCollectionLayoutSupplementaryItem = .init(
 				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(0.85),
-					heightDimension: .estimated(44)
+					widthDimension: .fractionalWidth(0.15),
+					heightDimension: .absolute(60)
 				),
-				supplementaryItems: [
-					.init(
+				elementKind: TimeColumnHeader.identifier,
+				containerAnchor: NSCollectionLayoutAnchor(
+					edges: .leading
+				)
+			)
+
+			var horizontalGroups: [NSCollectionLayoutGroup] = []
+			for subsection in itemSection.cellModels.grouped(by: \.number) {
+
+				let count = subsection.count
+				let items = (0..<count).map { _ in
+					return NSCollectionLayoutItem(
 						layoutSize: NSCollectionLayoutSize(
-							widthDimension: .fractionalWidth(0.15),
-							heightDimension: .estimated(44)
-						),
-						elementKind: TimeColumnHeader.identifier,
-						containerAnchor: NSCollectionLayoutAnchor(
-							edges: .leading, fractionalOffset: CGPoint(x: -1.1, y: 0)
+							widthDimension: .fractionalWidth(1.0 / CGFloat(count)),
+							heightDimension: .fractionalHeight(1.0)
 						)
 					)
-				]
+				}
+
+				let horizontalGroup = NSCollectionLayoutGroup.horizontal(
+					layoutSize: .init(
+						widthDimension: .fractionalWidth(1.0),
+						heightDimension: .absolute(60.0)
+					),
+					subitems: items
+				)
+				horizontalGroup.interItemSpacing = .fixed(8)
+
+				horizontalGroups.append(horizontalGroup)
+			}
+
+			let verticalGroup = NSCollectionLayoutGroup.vertical(
+				layoutSize: .init(
+					widthDimension: .fractionalWidth(0.8),
+					heightDimension: .absolute(
+						(60.0 * CGFloat(horizontalGroups.count)) + (8.0 * CGFloat(horizontalGroups.count - 1))
+					)
+				),
+				subitems: horizontalGroups
 			)
-			item.edgeSpacing = NSCollectionLayoutEdgeSpacing(
-				leading: .flexible(0.15),
+
+			verticalGroup.edgeSpacing = NSCollectionLayoutEdgeSpacing(
+				leading: .flexible(0.2),
 				top: nil,
 				trailing: .fixed(8),
 				bottom: nil
 			)
+			verticalGroup.interItemSpacing = .fixed(8)
+			verticalGroup.supplementaryItems = [timeSupplementaryItem]
 
-			let group = NSCollectionLayoutGroup.vertical(
-				layoutSize: .init(
-					widthDimension: .fractionalWidth(1),
-					heightDimension: .estimated(44)
-				), subitems: [item]
-			)
-			group.interItemSpacing = .fixed(8)
-
-			let section = NSCollectionLayoutSection(group: group)
+			let section = NSCollectionLayoutSection(group: verticalGroup)
 
 			let header = NSCollectionLayoutBoundarySupplementaryItem(
-				layoutSize: NSCollectionLayoutSize(
+				layoutSize: .init(
 					widthDimension: .fractionalWidth(1.0),
-					heightDimension: .fractionalHeight(0.09)
+					heightDimension: .fractionalHeight(0.1)
 				),
-				elementKind: DayColumnHeaderView.identifier, alignment: .top
+				elementKind: DayColumnHeaderView.identifier,
+				alignment: .top
 			)
-			section.interGroupSpacing = 10
+
+			section.interGroupSpacing = 8
 			section.boundarySupplementaryItems = [header]
 
 			return section
@@ -106,8 +135,8 @@ final class TimetableCollectionController {
 		) { view, _, indexPath in
 			if let model = self.dataSource.itemIdentifier(for: indexPath) {
 				view.configure(
-					title: Formatters.dateFormatter.string(from: model.startTime),
-					isCurrentDay: false
+					title: Formatters.verticalDateFormatter.string(from: model.startTime),
+					isCurrentDay: Calendar.current.isDateInToday(model.startTime)
 				)
 			}
 		}
@@ -136,6 +165,7 @@ final class TimetableCollectionController {
 						using: timeHeaderRegistration,
 						for: indexPath
 					)
+
 				default: nil
 			}
 		}

@@ -24,26 +24,31 @@ final class DayColumnHeaderView: UICollectionReusableView {
 		super.init(frame: frame)
 
 		addSubview(backgroundView)
-		backgroundView.addSubview(label)
+		addSubview(label)
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
+		backgroundView.layer.cornerRadius = 16
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.textAlignment = .center
 
 		NSLayoutConstraint.activate([
-			backgroundView.topAnchor.constraint(equalTo: topAnchor),
-			backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+			backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+			backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+			backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
 
-			label.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 8),
-			label.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 8),
-			label.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -8),
-			label.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -8)
+			label.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+			label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+			label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+			label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
 		])
 	}
 
 	func configure(title: String, isCurrentDay: Bool) {
 		label.text = title
-		backgroundView.backgroundColor = isCurrentDay ? .systemRed : .clear
+		if isCurrentDay {
+			backgroundView.backgroundColor = .systemRed.withAlphaComponent(0.5)
+		} else {
+			backgroundView.backgroundColor = .clear
+		}
 	}
 }

@@ -38,8 +38,8 @@ final class TimeColumnHeader: UICollectionReusableView {
 		NSLayoutConstraint.activate([
 			stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			stackView.topAnchor.constraint(equalTo: topAnchor),
-			stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+			stackView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+			stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
 		])
 	}
 

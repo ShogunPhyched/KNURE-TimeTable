@@ -70,7 +70,8 @@ extension TimetableInteractor: TimetableInteractorInput {
 							title: lesson.subject.brief ?? "",
 							subtitle: lesson.auditory,
 							startTime: lesson.start,
-							endTime: lesson.end
+							endTime: lesson.end,
+							number: lesson.number
 						)
 					}
 

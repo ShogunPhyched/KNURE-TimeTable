@@ -16,9 +16,21 @@ enum Formatters {
 		return formatter
 	}()
 
-	static let dateFormatter: DateFormatter = {
+	static let verticalDateFormatter: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "EEEE, dd MMMM"
+		return formatter
+	}()
+
+	static let horizontalDateFormatter: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "dd.MM, EE"
+		return formatter
+	}()
+
+	static let itemFormatter: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "dd.MM.yyyy, HH:mm:ss"
 		return formatter
 	}()
 }

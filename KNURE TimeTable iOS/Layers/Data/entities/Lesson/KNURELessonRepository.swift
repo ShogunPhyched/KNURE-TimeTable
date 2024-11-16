@@ -63,15 +63,3 @@ extension KNURELessonRepository: LessonRepository {
 		case lessonNotFound
 	}
 }
-
-private extension Sequence {
-	func grouped<T: Equatable>(by block: (Element) throws -> T) rethrows -> [[Element]] {
-		return try reduce(into: []) { result, element in
-			if let lastElement = result.last?.last, try block(lastElement) == block(element) {
-				result[result.index(before: result.endIndex)].append(element)
-			} else {
-				result.append([element])
-			}
-		}
-	}
-}
