@@ -18,15 +18,23 @@ final class Assembly {
 	private let persistentStoreContainer = DefaultAppConfig().persistentStoreContainer
 	private let urlSessionConfiguration = DefaultAppConfig().urlSessionConfiguration
 
+	private lazy var coreDataService: CoreDataService = CoreDataServiceImpl(
+		persistentContainer: persistentStoreContainer
+	)
+
+	private lazy var networkService: NetworkService = NetworkServiceImpl(
+		configuration: urlSessionConfiguration
+	)
+
 	private lazy var lessonRepository: KNURELessonRepository = KNURELessonRepository(
-		coreDataService: CoreDataServiceImpl(persistentContainer: persistentStoreContainer),
+		coreDataService: coreDataService,
 		importService: KNURELessonImportService(persistentContainer: persistentStoreContainer),
-		networkService: NetworkServiceImpl(configuration: urlSessionConfiguration)
+		networkService: networkService
 	)
 
 	private lazy var itemRepository: KNUREItemRepository = KNUREItemRepository(
-		coreDataService: CoreDataServiceImpl(persistentContainer: persistentStoreContainer),
-		networkService: NetworkServiceImpl(configuration: urlSessionConfiguration)
+		coreDataService: coreDataService,
+		networkService: networkService
 	)
 
 	func makeTimetableView() -> TimetableViewController {

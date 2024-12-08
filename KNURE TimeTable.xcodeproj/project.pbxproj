@@ -52,7 +52,7 @@
 		77F160222402FA110028966F /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F160212402FA110028966F /* HTTP.swift */; };
 		77F16024240313750028966F /* KNURE.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16023240313750028966F /* KNURE.Request.swift */; };
 		D4062C4C2CBC49BD00B1F6C6 /* AddItemsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */; };
-		D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */; };
+		D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */; };
 		D44CDA9A2CD2CA0A00B05CA5 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */; };
 		D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */; };
 		D44CDA9E2CD2D40700B05CA5 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */; };
@@ -167,7 +167,7 @@
 		77F16023240313750028966F /* KNURE.Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Request.swift; sourceTree = "<group>"; };
 		C33FCC631819965300328F6D /* KNURE TimeTable iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KNURE TimeTable iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsInteractor.swift; sourceTree = "<group>"; };
-		D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCollectionController.swift; sourceTree = "<group>"; };
+		D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCollectionBuilder.swift; sourceTree = "<group>"; };
 		D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewCell.swift; sourceTree = "<group>"; };
 		D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayColumnHeaderView.swift; sourceTree = "<group>"; };
 		D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
@@ -372,6 +372,7 @@
 		778DC8592364C04000580786 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
+				D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */,
 				77D4AAAC23AF7ADF00729A93 /* Timetable */,
 			);
 			path = Timetable;
@@ -489,7 +490,6 @@
 				D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */,
 				D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */,
 				D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */,
-				D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionController.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -737,7 +737,7 @@
 				775A3F8F222179A000931A1F /* RemoveItemUseCase.swift in Sources */,
 				7710B0C524D06B7200BE4E2D /* Publishers.Entity.swift in Sources */,
 				D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */,
-				D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionController.swift in Sources */,
+				D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionBuilder.swift in Sources */,
 				775A3F85222177AA00931A1F /* Item.swift in Sources */,
 				77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */,
 				77CC5A5225EAA20600D1FEEF /* NetworkService.swift in Sources */,

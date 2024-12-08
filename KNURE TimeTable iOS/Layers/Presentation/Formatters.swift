@@ -16,13 +16,13 @@ enum Formatters {
 		return formatter
 	}()
 
-	static let verticalDateFormatter: DateFormatter = {
+	static let verticalDate: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "EEEE, dd MMMM"
 		return formatter
 	}()
 
-	static let horizontalDateFormatter: DateFormatter = {
+	static let horizontalDate: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "dd.MM, EE"
 		return formatter

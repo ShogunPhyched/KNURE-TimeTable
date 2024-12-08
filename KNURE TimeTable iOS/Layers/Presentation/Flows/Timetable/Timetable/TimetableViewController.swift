@@ -27,7 +27,7 @@ protocol TimetableViewControllerOutput {
 final class TimetableViewController: UIViewController {
 
 	private var cancellables: Set<AnyCancellable> = []
-	private let controller: TimetableCollectionController = .init()
+	private let builder: TimetableCollectionBuilder = .init()
 	private let viewModel: TimetableViewModel = .init()
 
 	private let interactor: TimetableInteractorInput
@@ -45,7 +45,9 @@ final class TimetableViewController: UIViewController {
 	}
 
 	override func loadView() {
-		view = TimetableMainView(controller: controller)
+		let output = builder.build(scrollDirection: viewModel.scrollDirection)
+		viewModel.dataSource = output.dataSource
+		view = TimetableMainView(collectionView: output.collection)
 	}
 
     override func viewDidLoad() {
@@ -60,7 +62,7 @@ final class TimetableViewController: UIViewController {
 			.switchToLatest()
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] model in
-				self?.controller.update(with: model)
+				self?.viewModel.update(with: model)
 			}
 			.store(in: &cancellables)
 

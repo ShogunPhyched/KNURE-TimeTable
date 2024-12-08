@@ -18,7 +18,7 @@ protocol TimetableInteractorInput {
 
 	func observeTimetableUpdates(
 		identifier: String
-	) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never>
+	) -> AnyPublisher<TimetableModel, Never>
 }
 
 final class TimetableInteractor {
@@ -58,27 +58,31 @@ extension TimetableInteractor: TimetableInteractorInput {
 
 	func observeTimetableUpdates(
 		identifier: String
-	) -> AnyPublisher<TimetableCollectionController.TimetableModel, Never> {
+	) -> AnyPublisher<TimetableModel, Never> {
 		timetableSubscription
 			.subscribe(identifier)
 			.map { timetable in
 				let sections = timetable.map { lessons in
-					let models = lessons.map { lesson in
-						LessonCollectionViewCellModel(
-							subjectId: lesson.subject.identifier ?? "",
-							baseIdentifier: lesson.type.baseIdentifier,
-							title: lesson.subject.brief ?? "",
-							subtitle: lesson.auditory,
-							startTime: lesson.start,
-							endTime: lesson.end,
-							number: lesson.number
-						)
+					let groups = lessons.grouped(by: \.number).map { lessons in
+						let cellModels = lessons.map { lesson in
+							LessonCollectionViewCellModel(
+								subjectId: lesson.subject.identifier ?? "",
+								baseIdentifier: lesson.type.baseIdentifier,
+								title: lesson.subject.brief ?? "",
+								subtitle: lesson.auditory,
+								startTime: lesson.start,
+								endTime: lesson.end,
+								number: lesson.number
+							)
+						}
+
+						return TimetableModel.Section.Group(cellModels: cellModels)
 					}
 
-					return TimetableCollectionController.TimetableModel.Section(cellModels: models)
+					return TimetableModel.Section(groups: groups)
 				}
 
-				return TimetableCollectionController.TimetableModel(sections: sections)
+				return TimetableModel(sections: sections)
 			}
 			.eraseToAnyPublisher()
 	}

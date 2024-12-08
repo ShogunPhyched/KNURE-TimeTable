@@ -10,11 +10,12 @@ import UIKit
 
 final class TimetableMainView: UIView {
 
-	init(controller: TimetableCollectionController) {
+	init(collectionView: UICollectionView) {
 		super.init(frame: .zero)
-		let collectionView = controller.make()
 		addSubview(collectionView)
 		collectionView.backgroundColor = .clear
+		collectionView.showsVerticalScrollIndicator = false
+		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
 			collectionView.topAnchor.constraint(equalTo: topAnchor),
