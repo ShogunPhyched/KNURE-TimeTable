@@ -42,7 +42,7 @@ final class Assembly {
 			interactor: TimetableInteractor(
 				addedItemsSubscription: AddedItemsSubscription(repository: itemRepository),
 				timetableSubscription: TimetableSubscription(repository: lessonRepository),
-				updateTimetableUseCase: UpdateTimetableUseCase(lessonRepository: lessonRepository),
+				updateTimetableUseCase: UpdateTimetableUseCase(repository: lessonRepository),
 				selectItemUseCase: SelectItemUseCase(repository: itemRepository)
 			)
 		)
@@ -52,7 +52,7 @@ final class Assembly {
 		ItemsListView(
 			interactor: ItemsListInteractor(
 				addedItemsSubscription: AddedItemsSubscription(repository: itemRepository),
-				updateTimetableUseCase: UpdateTimetableUseCase(lessonRepository: lessonRepository),
+				updateTimetableUseCase: UpdateTimetableUseCase(repository: lessonRepository),
 				removeItemUseCase: RemoveItemUseCase(repository: itemRepository),
 				selectItemUseCase: SelectItemUseCase(repository: itemRepository)
 			)

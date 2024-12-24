@@ -6,16 +6,12 @@
 //  Copyright © 2019 Vladislav Chapaev. All rights reserved.
 //
 
-import Foundation
-
 final class UpdateTimetableUseCase {
 
-	private let lessonRepository: LessonRepository
+	private let repository: LessonRepository
 
-	init(
-		lessonRepository: LessonRepository
-	) {
-		self.lessonRepository = lessonRepository
+	init(repository: LessonRepository) {
+		self.repository = repository
 	}
 }
 
@@ -27,6 +23,6 @@ extension UpdateTimetableUseCase: UseCase {
 	}
 
 	func execute(_ request: Query) async throws {
-		try await lessonRepository.remoteLoadTimetable(of: request.type, identifier: request.identifier)
+		try await repository.remoteLoadTimetable(of: request.type, identifier: request.identifier)
 	}
 }

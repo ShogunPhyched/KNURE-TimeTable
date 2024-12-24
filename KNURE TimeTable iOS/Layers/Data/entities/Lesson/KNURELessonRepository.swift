@@ -28,15 +28,14 @@ final class KNURELessonRepository {
 
 extension KNURELessonRepository: LessonRepository {
 
-	func localTimetable(identifier: String) -> AnyPublisher<[[Lesson]], Never> {
-		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
+	func localTimetable(identifier: String) -> AnyPublisher<[Lesson], Never> {
+		let request = LessonManaged.fetchRequest()
 		request.predicate = NSPredicate(format: "item.identifier = %@", identifier)
 		request.sortDescriptors = [
 			NSSortDescriptor(key: "startTimestamp", ascending: true),
 			NSSortDescriptor(key: "subject.brief", ascending: true)
 		]
 		return coreDataService.observe(request)
-			.map { $0.grouped(by: \.day) }
 			.eraseToAnyPublisher()
 	}
 

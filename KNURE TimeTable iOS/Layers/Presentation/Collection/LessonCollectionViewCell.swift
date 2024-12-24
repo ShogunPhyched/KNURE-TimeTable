@@ -64,6 +64,9 @@ final class LessonCollectionViewCell: UICollectionViewCell {
 			case 20...24:
 				backgroundColor = .systemPink.withAlphaComponent(0.25)
 
+			case 1337:
+				backgroundColor = .clear
+
 			default:
 				backgroundColor = .tertiarySystemBackground
 		}

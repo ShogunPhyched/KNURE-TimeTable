@@ -32,7 +32,8 @@ extension LessonManaged: Convertable {
 				shortName: type.shortName
 			),
 			groups: [],
-			teachers: []
+			teachers: [],
+			dummy: false
 		)
 	}
 }

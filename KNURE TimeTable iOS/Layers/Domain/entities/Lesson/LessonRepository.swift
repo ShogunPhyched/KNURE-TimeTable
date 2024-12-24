@@ -15,7 +15,7 @@ protocol LessonRepository: Sendable {
 	///
 	/// - Parameter identifier: item identifier
 	/// - Returns: Observable lesson list
-	func localTimetable(identifier: String) -> AnyPublisher<[[Lesson]], Never>
+	func localTimetable(identifier: String) -> AnyPublisher<[Lesson], Never>
 
 	/// Access to single lesson by identifier
 	///

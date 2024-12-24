@@ -25,6 +25,8 @@ struct Lesson: Sendable, Equatable {
 	let groups: [Group]
 
 	let teachers: [Teacher]
+
+	let dummy: Bool
 }
 
 extension Lesson {
@@ -69,5 +71,14 @@ extension Lesson {
 extension Lesson {
 	var day: Date {
 		Calendar.current.startOfDay(for: start)
+	}
+}
+
+extension Array where Element == Lesson {
+	var minMaxRange: ClosedRange<Int> {
+		let numbers = Set(map(\.number))
+		let maxNumber = numbers.max() ?? 1
+		let minNumber = numbers.min() ?? 1
+		return minNumber...maxNumber
 	}
 }
