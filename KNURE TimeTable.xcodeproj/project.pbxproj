@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7702914F22081C8800B82CF4 /* DataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 770290F222081C8800B82CF4 /* DataStorage.xcdatamodeld */; };
 		7702916322081C8800B82CF4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7702912222081C8800B82CF4 /* LaunchScreen.xib */; };
-		7702917322081C8800B82CF4 /* MSCollectionViewCalendarLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7702914622081C8800B82CF4 /* MSCollectionViewCalendarLayout.m */; };
 		770FC9672618E1FB00B047B2 /* XCTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770FC9662618E1FB00B047B2 /* XCTestExtensions.swift */; };
 		7710B0C524D06B7200BE4E2D /* Publishers.Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7710B0C424D06B7200BE4E2D /* Publishers.Entity.swift */; };
 		7716FCD922885B3A00615D39 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7716FCD822885B3A00615D39 /* UseCase.swift */; };
@@ -52,6 +51,7 @@
 		77F160222402FA110028966F /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F160212402FA110028966F /* HTTP.swift */; };
 		77F16024240313750028966F /* KNURE.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16023240313750028966F /* KNURE.Request.swift */; };
 		D4062C4C2CBC49BD00B1F6C6 /* AddItemsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */; };
+		D41E57B92D21CE0700FF0E0A /* ItemsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E57B82D21CE0100FF0E0A /* ItemsPickerView.swift */; };
 		D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */; };
 		D44CDA9A2CD2CA0A00B05CA5 /* LessonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */; };
 		D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */; };
@@ -59,8 +59,6 @@
 		D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8A2CAB467D002A97BB /* Subscribing.swift */; };
 		D466DD8D2CAB48A1002A97BB /* AddedItemsSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */; };
 		D466DD8F2CAB4B8C002A97BB /* ItemsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */; };
-		D468A5982CDC05D8002AD433 /* MockJSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7783E9FC2544267F00198C9A /* MockJSONLoader.swift */; };
-		D468A5992CDC0614002AD433 /* Mocks in Resources */ = {isa = PBXBuildFile; fileRef = 7753DA51253340B20051A997 /* Mocks */; };
 		D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */; };
 		D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */; };
 		D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */; };
@@ -119,8 +117,6 @@
 /* Begin PBXFileReference section */
 		770290F322081C8800B82CF4 /* DataStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStorage.xcdatamodel; sourceTree = "<group>"; };
 		7702912222081C8800B82CF4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		7702914622081C8800B82CF4 /* MSCollectionViewCalendarLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCollectionViewCalendarLayout.m; sourceTree = "<group>"; };
-		7702914722081C8800B82CF4 /* MSCollectionViewCalendarLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCollectionViewCalendarLayout.h; sourceTree = "<group>"; };
 		770FC9662618E1FB00B047B2 /* XCTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestExtensions.swift; sourceTree = "<group>"; };
 		7710B0C424D06B7200BE4E2D /* Publishers.Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publishers.Entity.swift; sourceTree = "<group>"; };
 		7716FCD822885B3A00615D39 /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
@@ -167,6 +163,7 @@
 		77F16023240313750028966F /* KNURE.Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Request.swift; sourceTree = "<group>"; };
 		C33FCC631819965300328F6D /* KNURE TimeTable iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KNURE TimeTable iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsInteractor.swift; sourceTree = "<group>"; };
+		D41E57B82D21CE0100FF0E0A /* ItemsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPickerView.swift; sourceTree = "<group>"; };
 		D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCollectionBuilder.swift; sourceTree = "<group>"; };
 		D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCollectionViewCell.swift; sourceTree = "<group>"; };
 		D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayColumnHeaderView.swift; sourceTree = "<group>"; };
@@ -255,18 +252,8 @@
 				D44CDA962CD2C7BA00B05CA5 /* Collection */,
 				D48A24BD2C1637DA0081BF3A /* Flows */,
 				7702912222081C8800B82CF4 /* LaunchScreen.xib */,
-				7702914522081C8800B82CF4 /* MSCollectionViewCalendarLayout */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		7702914522081C8800B82CF4 /* MSCollectionViewCalendarLayout */ = {
-			isa = PBXGroup;
-			children = (
-				7702914622081C8800B82CF4 /* MSCollectionViewCalendarLayout.m */,
-				7702914722081C8800B82CF4 /* MSCollectionViewCalendarLayout.h */,
-			);
-			path = MSCollectionViewCalendarLayout;
 			sourceTree = "<group>";
 		};
 		770D9F7B223E41E40037C5B1 /* StorageService */ = {
@@ -453,6 +440,7 @@
 				77D4AAAD23AF7B1000729A93 /* TimetableViewController.swift */,
 				D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */,
 				77D4AAB123AF7B3D00729A93 /* TimetableViewModel.swift */,
+				D41E57B82D21CE0100FF0E0A /* ItemsPickerView.swift */,
 			);
 			path = Timetable;
 			sourceTree = "<group>";
@@ -668,7 +656,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D468A5992CDC0614002AD433 /* Mocks in Resources */,
 				D48A24E22C1A1CEE0081BF3A /* Main.strings in Resources */,
 				7702916322081C8800B82CF4 /* LaunchScreen.xib in Resources */,
 				D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */,
@@ -722,6 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7766B3052561466C00CE638F /* KNURE.Response.swift in Sources */,
+				D41E57B92D21CE0700FF0E0A /* ItemsPickerView.swift in Sources */,
 				D4ACC83C2B8E7AC000AE732A /* AddItemCell.swift in Sources */,
 				77D4AAB223AF7B3D00729A93 /* TimetableViewModel.swift in Sources */,
 				7752F9392247E46E003DC9FE /* CoreDataService.swift in Sources */,
@@ -742,13 +730,11 @@
 				77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */,
 				77CC5A5225EAA20600D1FEEF /* NetworkService.swift in Sources */,
 				D466DD8F2CAB4B8C002A97BB /* ItemsListInteractor.swift in Sources */,
-				7702917322081C8800B82CF4 /* MSCollectionViewCalendarLayout.m in Sources */,
 				777AE2152221988E00EAEE20 /* Data+EncodingTransformation.swift in Sources */,
 				D48A24C12C1638210081BF3A /* SettingsView.swift in Sources */,
 				D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */,
 				775A3F9922217FD700931A1F /* Main.swift in Sources */,
 				771A83D522A7038C006964D7 /* ItemManaged+Convertable.swift in Sources */,
-				D468A5982CDC05D8002AD433 /* MockJSONLoader.swift in Sources */,
 				D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */,
 				D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */,
 				775A3F7D222174A000931A1F /* KNUREItemRepository.swift in Sources */,

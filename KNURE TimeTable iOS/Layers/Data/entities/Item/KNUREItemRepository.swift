@@ -67,12 +67,9 @@ extension KNUREItemRepository: ItemRepository {
 
 	func remote(items type: Item.Kind) async throws -> [Item]{
 		let request = try KNURE.Request.make(endpoint: .item(type))
-
 		let decoder = JSONDecoder()
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
-//		let response = try await networkService.execute(request)
-//		let data = try networkService.validate(response).transform(from: .windowsCP1251, to: .utf8)
-		let data = MockJSONLoader.load(json: "valid", item: type.cast)
+		let data = try await networkService.execute(request).data.transform(from: .windowsCP1251, to: .utf8)
 		let decoded = try decoder.decode(KNURE.Response.self, from: data)
 		return transform(response: decoded, by: type)
 	}

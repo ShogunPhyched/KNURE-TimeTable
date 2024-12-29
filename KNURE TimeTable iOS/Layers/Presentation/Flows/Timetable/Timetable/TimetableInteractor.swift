@@ -8,7 +8,7 @@
 
 import Combine
 
-protocol TimetableInteractorInput {
+protocol TimetableInteractorInput: Sendable {
 
 	func observeAddedItems() -> AnyPublisher<[Item], Never>
 

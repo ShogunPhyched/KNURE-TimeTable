@@ -50,6 +50,7 @@ struct ItemCell: View {
 		let title: String
 		let subtitle: String
 		let state: State
+		let type: Item.Kind
 
 		enum State: String {
 			case idle
@@ -60,5 +61,5 @@ struct ItemCell: View {
 }
 
 #Preview {
-	ItemCell(model: .init(id: "some", title: "PI-11-3", subtitle: "Not updated", state: .idle))
+	ItemCell(model: .init(id: "some", title: "PI-11-3", subtitle: "Not updated", state: .idle, type: .group))
 }

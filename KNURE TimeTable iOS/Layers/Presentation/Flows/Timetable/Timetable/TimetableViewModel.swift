@@ -12,17 +12,17 @@ import UIKit
 final class TimetableViewModel {
 	@Published var addedItems: [Item] = []
 	var scrollDirection: UICollectionView.ScrollDirection = .horizontal
-//	UserDefaults.standard.bool(forKey: "TimetableVerticalMode") ? .vertical : .horizontal
+// UserDefaults.standard.bool(forKey: "TimetableVerticalMode") ? .vertical : .horizontal
 
 	var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>?
 
-	@MainActor func update(with model: TimetableModel) {
+	@MainActor func update(with model: TimetableModel, animated: Bool) {
 		var snapshot = NSDiffableDataSourceSnapshot<TimetableModel.Section, LessonCollectionViewCellModel>()
 		for section in model.sections {
 			snapshot.appendSections([section])
 			snapshot.appendItems(section.groups.flatMap(\.cellModels), toSection: section)
 		}
-		dataSource?.apply(snapshot, animatingDifferences: true)
+		dataSource?.apply(snapshot, animatingDifferences: animated)
 	}
 }
 

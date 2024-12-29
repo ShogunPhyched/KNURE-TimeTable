@@ -75,19 +75,20 @@ final class TimetableCollectionBuilder {
 
 		verticalGroup.interItemSpacing = .fixed(8)
 
+		let header = NSCollectionLayoutBoundarySupplementaryItem(
+			layoutSize: .init(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .fractionalHeight(0.1)
+			),
+			elementKind: DayColumnHeaderView.identifier,
+			alignment: .top
+		)
+		header.pinToVisibleBounds = true
+
 		let section = NSCollectionLayoutSection(group: verticalGroup)
 
 		section.interGroupSpacing = 8
-		section.boundarySupplementaryItems = [
-			NSCollectionLayoutBoundarySupplementaryItem(
-				layoutSize: .init(
-					widthDimension: .fractionalWidth(1.0),
-					heightDimension: .fractionalHeight(0.1)
-				),
-				elementKind: DayColumnHeaderView.identifier,
-				alignment: .top
-			)
-		]
+		section.boundarySupplementaryItems = [header]
 
 		return section
 	}

@@ -51,7 +51,8 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 								id: $0.identifier,
 								title: $0.shortName,
 								subtitle: self.subtile(for: $0),
-								state: .idle
+								state: .idle,
+								type: $0.type
 							)
 						}
 					)

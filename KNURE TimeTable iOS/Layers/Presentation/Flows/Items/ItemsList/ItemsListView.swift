@@ -33,7 +33,11 @@ struct ItemsListView: View {
 							}
 							.onTapGesture {
 								Task {
-									try await interactor.updateTimetable(of: .group, identifier: item.id)
+									do {
+										try await interactor.updateTimetable(of: item.type, identifier: item.id)
+									} catch {
+										print(error)
+									}
 								}
 							}
 					}

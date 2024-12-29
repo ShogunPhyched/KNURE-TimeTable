@@ -53,11 +53,7 @@ extension KNURELessonRepository: LessonRepository {
 		let request = try KNURE.Request.make(endpoint: .timetable(type, identifier))
 		let decoder = JSONDecoder()
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
-//		let response = try await networkService.execute(request)
-//		let data = try networkService.validate(response).transform(from: .windowsCP1251, to: .utf8)
-
-		let data = MockJSONLoader.load(json: "timetable", item: .groups)
-
+		let data = try await networkService.execute(request).data.transform(from: .windowsCP1251, to: .utf8)
 		try await importService.decode(data, info: ["identifier": identifier])
 	}
 

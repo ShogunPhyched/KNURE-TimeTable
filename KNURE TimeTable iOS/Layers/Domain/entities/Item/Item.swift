@@ -24,7 +24,7 @@ struct Item: Sendable, Hashable {
 	let type: Kind
 
 	/// item selection indicator
-	let selected: Bool
+	var selected: Bool
 
 	/// Item's hint
 	let hint: String?
@@ -52,4 +52,8 @@ extension Item.Kind {
 		case .auditory: return "Аудитории"
 		}
 	}
+}
+
+extension Item: Identifiable {
+	var id: String { identifier }
 }
