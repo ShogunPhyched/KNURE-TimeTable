@@ -78,7 +78,7 @@ final class TimetableCollectionBuilder {
 		let header = NSCollectionLayoutBoundarySupplementaryItem(
 			layoutSize: .init(
 				widthDimension: .fractionalWidth(1.0),
-				heightDimension: .fractionalHeight(0.1)
+				heightDimension: .estimated(44.0)
 			),
 			elementKind: DayColumnHeaderView.identifier,
 			alignment: .top
@@ -150,30 +150,26 @@ final class TimetableCollectionBuilder {
 		return section
 	}
 
-	func build(
-		scrollDirection: UICollectionView.ScrollDirection
-	) -> (
-		collection: UICollectionView,
-		dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>
-	) {
-		var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>!
+	func makeLayout(
+		scrollDirection: () -> UICollectionView.ScrollDirection,
+		dataSource: @escaping () -> UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>
+	) -> UICollectionViewCompositionalLayout {
 		let configuration = UICollectionViewCompositionalLayoutConfiguration()
-		configuration.scrollDirection = scrollDirection
+		configuration.scrollDirection = scrollDirection()
 		configuration.interSectionSpacing = 8
-		let layout = UICollectionViewCompositionalLayout(sectionProvider: { index, environment in
-
+		return UICollectionViewCompositionalLayout(sectionProvider: { index, environment in
 			guard
-				let itemSection = dataSource.sectionIdentifier(for: index)
+				let itemSection = dataSource().sectionIdentifier(for: index)
 			else {
 				fatalError()
 			}
 
-			switch scrollDirection {
+			switch configuration.scrollDirection {
 				case .vertical:
 					return self.makeVerticalSection(itemSection)
 
 				case .horizontal:
-					let allSections = dataSource.snapshot().sectionIdentifiers
+					let allSections = dataSource().snapshot().sectionIdentifiers
 					let maxNumberOfPairs = allSections.flatMap(\.groups).flatMap(\.cellModels).map(\.number).max() ?? 1
 					return self.makeHorizontalSection(itemSection, maxNumberOfPairs: maxNumberOfPairs)
 
@@ -182,8 +178,23 @@ final class TimetableCollectionBuilder {
 			}
 
 		}, configuration: configuration)
+	}
 
-		let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+	func build(
+		scrollDirection: @escaping () -> UICollectionView.ScrollDirection
+	) -> (
+		collection: UICollectionView,
+		dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>
+	) {
+		var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>!
+
+		let collection = UICollectionView(
+			frame: .zero,
+			collectionViewLayout: makeLayout(
+				scrollDirection: scrollDirection,
+				dataSource: { dataSource }
+			)
+		)
 		let registration = UICollectionView.CellRegistration<
 			LessonCollectionViewCell, LessonCollectionViewCellModel
 		> { cell, indexPath, item in
@@ -200,7 +211,7 @@ final class TimetableCollectionBuilder {
 			elementKind: DayColumnHeaderView.identifier
 		) { view, _, indexPath in
 			if let model = dataSource.itemIdentifier(for: indexPath) {
-				let formatter = scrollDirection == .vertical ? Formatters.verticalDate : Formatters.horizontalDate
+				let formatter = scrollDirection() == .vertical ? Formatters.verticalDate : Formatters.horizontalDate
 				view.configure(
 					title: formatter.string(from: model.startTime),
 					isCurrentDay: Calendar.current.isDateInToday(model.startTime)

@@ -22,13 +22,14 @@ final class DayColumnHeaderView: UICollectionReusableView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-
+		backgroundColor = .systemBackground
 		addSubview(backgroundView)
 		addSubview(label)
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
-		backgroundView.layer.cornerRadius = 16
+		backgroundView.layer.cornerRadius = 12
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.textAlignment = .center
+		label.adjustsFontForContentSizeCategory = true
 
 		NSLayoutConstraint.activate([
 			backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 16),

@@ -70,4 +70,8 @@ final class Assembly {
 			itemType: itemType
 		)
 	}
+
+	func makeSettingsView() -> SettingsView {
+		SettingsView()
+	}
 }

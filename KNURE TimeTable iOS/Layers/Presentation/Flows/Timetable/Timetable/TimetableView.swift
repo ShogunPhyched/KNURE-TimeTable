@@ -10,7 +10,10 @@ import UIKit
 
 final class TimetableMainView: UIView {
 
+	let collectionView: UICollectionView
+
 	init(collectionView: UICollectionView) {
+		self.collectionView = collectionView
 		super.init(frame: .zero)
 		addSubview(collectionView)
 		collectionView.backgroundColor = .clear

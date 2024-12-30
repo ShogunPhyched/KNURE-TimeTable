@@ -16,7 +16,7 @@ struct RootTabView: View {
 				.tabItem { Label("Timetable", systemImage: "calendar") }
 			Assembly.shared.makeItemsView()
 				.tabItem { Label("Items", systemImage: "list.bullet") }
-			SettingsView()
+			Assembly.shared.makeSettingsView()
 				.tabItem { Label("Settings", systemImage: "gearshape.fill") }
 		}
 	}

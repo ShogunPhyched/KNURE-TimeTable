@@ -16,6 +16,7 @@ struct LessonCollectionViewCellModel: Hashable {
 	let startTime: Date
 	let endTime: Date
 	let number: Int
+	let dummy: Bool
 }
 
 final class LessonCollectionViewCell: UICollectionViewCell {

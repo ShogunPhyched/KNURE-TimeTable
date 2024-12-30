@@ -11,10 +11,9 @@ import UIKit
 
 final class TimetableViewModel {
 	@Published var addedItems: [Item] = []
-	var scrollDirection: UICollectionView.ScrollDirection = .horizontal
-// UserDefaults.standard.bool(forKey: "TimetableVerticalMode") ? .vertical : .horizontal
+	@Published var isVerticalMode: Bool = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
 
-	var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>?
+	var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>!
 
 	@MainActor func update(with model: TimetableModel, animated: Bool) {
 		var snapshot = NSDiffableDataSourceSnapshot<TimetableModel.Section, LessonCollectionViewCellModel>()

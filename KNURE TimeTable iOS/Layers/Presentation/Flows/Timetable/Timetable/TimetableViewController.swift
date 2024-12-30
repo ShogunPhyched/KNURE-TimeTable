@@ -64,7 +64,12 @@ final class TimetableViewController: UIViewController {
 	}
 
 	override func loadView() {
-		let output = builder.build(scrollDirection: viewModel.scrollDirection)
+		let output = builder.build(
+			scrollDirection: { [weak self] in
+				guard let self else { return .horizontal }
+				return self.viewModel.isVerticalMode ? .vertical : .horizontal
+			}
+		)
 		viewModel.dataSource = output.dataSource
 		view = TimetableMainView(collectionView: output.collection)
 	}
@@ -89,6 +94,27 @@ final class TimetableViewController: UIViewController {
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] model in
 				self?.viewModel.update(with: model, animated: false)
+			}
+			.store(in: &cancellables)
+
+		NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+			.sink { [weak self] _ in
+				self?.viewModel.isVerticalMode = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
+			}
+			.store(in: &cancellables)
+
+		viewModel.$isVerticalMode
+			.receive(on: DispatchQueue.main)
+			.sink { [weak self] value in
+				guard let self else { return }
+				let collectionView = (self.view as? TimetableMainView)?.collectionView
+				collectionView?.setCollectionViewLayout(
+					self.builder.makeLayout(
+						scrollDirection: { value ? .vertical : .horizontal },
+						dataSource: { self.viewModel.dataSource }
+					), animated: false
+				)
+				collectionView?.reloadData()
 			}
 			.store(in: &cancellables)
 

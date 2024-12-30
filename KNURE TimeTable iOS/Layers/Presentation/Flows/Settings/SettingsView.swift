@@ -10,7 +10,16 @@ import SwiftUI
 
 struct SettingsView: View {
 
+	@AppStorage("TimetableVerticalMode") var isVerticalMode: Bool = false
+
 	var body: some View {
-		Label("Empty view", systemImage: "some")
+		NavigationStack {
+			List {
+				Toggle(isOn: $isVerticalMode) {
+					Text("Вертикальная прокрутка")
+				}
+			}
+			.navigationTitle("Settings")
+		}
 	}
 }
