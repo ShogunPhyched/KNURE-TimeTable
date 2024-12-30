@@ -71,10 +71,8 @@
 		D48A24C12C1638210081BF3A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48A24C02C1638210081BF3A /* SettingsView.swift */; };
 		D48A24DB2C1A1CEE0081BF3A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48A24C92C1A1CEE0081BF3A /* Images.xcassets */; };
 		D48A24DC2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24CB2C1A1CEE0081BF3A /* InfoPlist.strings */; };
-		D48A24DD2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24CD2C1A1CEE0081BF3A /* InfoPlist.strings */; };
 		D48A24DE2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24CF2C1A1CEE0081BF3A /* InfoPlist.strings */; };
 		D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D12C1A1CEE0081BF3A /* Localizable.strings */; };
-		D48A24E02C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D32C1A1CEE0081BF3A /* Localizable.strings */; };
 		D48A24E12C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D52C1A1CEE0081BF3A /* Localizable.strings */; };
 		D48A24E22C1A1CEE0081BF3A /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D72C1A1CEE0081BF3A /* Main.strings */; };
 		D48A24E32C1A1CEE0081BF3A /* MainIpad.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D92C1A1CEE0081BF3A /* MainIpad.strings */; };
@@ -183,10 +181,8 @@
 		D48A24C02C1638210081BF3A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D48A24C92C1A1CEE0081BF3A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D48A24CA2C1A1CEE0081BF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D48A24CC2C1A1CEE0081BF3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D48A24CE2C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D48A24D02C1A1CEE0081BF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D48A24D22C1A1CEE0081BF3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D48A24D42C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D48A24D62C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		D48A24D82C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainIpad.strings; sourceTree = "<group>"; };
@@ -216,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				D468A5A22CE9095B002AD433 /* Sequence+Grouping.swift */,
-				775A3F9822217FD700931A1F /* Main.swift */,
 				7778E46722D1096000477BFE /* Configuration.swift */,
 				771A83D622A707E1006964D7 /* Convertable.swift */,
 				77D191122552CA60001771F9 /* NameSpace.swift */,
@@ -249,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				D468A5A02CDFFB58002AD433 /* Formatters.swift */,
+				775A3F9822217FD700931A1F /* Main.swift */,
 				D44CDA962CD2C7BA00B05CA5 /* Collection */,
 				D48A24BD2C1637DA0081BF3A /* Flows */,
 				7702912222081C8800B82CF4 /* LaunchScreen.xib */,
@@ -529,10 +525,8 @@
 			children = (
 				D48A24C92C1A1CEE0081BF3A /* Images.xcassets */,
 				D48A24CB2C1A1CEE0081BF3A /* InfoPlist.strings */,
-				D48A24CD2C1A1CEE0081BF3A /* InfoPlist.strings */,
 				D48A24CF2C1A1CEE0081BF3A /* InfoPlist.strings */,
 				D48A24D12C1A1CEE0081BF3A /* Localizable.strings */,
-				D48A24D32C1A1CEE0081BF3A /* Localizable.strings */,
 				D48A24D52C1A1CEE0081BF3A /* Localizable.strings */,
 				D48A24D72C1A1CEE0081BF3A /* Main.strings */,
 				D48A24D92C1A1CEE0081BF3A /* MainIpad.strings */,
@@ -580,7 +574,6 @@
 				C33FCC601819965300328F6D /* Frameworks */,
 				C33FCC611819965300328F6D /* Resources */,
 				773F6456196939220081165C /* Embed Foundation Extensions */,
-				777AE216222198F400EAEE20 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -610,7 +603,6 @@
 						TestTargetID = C33FCC621819965300328F6D;
 					};
 					C33FCC621819965300328F6D = {
-						DevelopmentTeam = GJ8GF93D7L;
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -628,7 +620,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Base,
 				ru,
 				en,
 			);
@@ -659,8 +650,6 @@
 				D48A24E22C1A1CEE0081BF3A /* Main.strings in Resources */,
 				7702916322081C8800B82CF4 /* LaunchScreen.xib in Resources */,
 				D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */,
-				D48A24DD2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */,
-				D48A24E02C1A1CEE0081BF3A /* Localizable.strings in Resources */,
 				D48A24DC2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */,
 				D48A24E12C1A1CEE0081BF3A /* Localizable.strings in Resources */,
 				D48A24DB2C1A1CEE0081BF3A /* Images.xcassets in Resources */,
@@ -670,27 +659,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		777AE216222198F400EAEE20 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		77C2041E2337FF32007D3A1B /* Sources */ = {
@@ -788,14 +756,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		D48A24CD2C1A1CEE0081BF3A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D48A24CC2C1A1CEE0081BF3A /* Base */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D48A24CF2C1A1CEE0081BF3A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -808,14 +768,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				D48A24D02C1A1CEE0081BF3A /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		D48A24D32C1A1CEE0081BF3A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D48A24D22C1A1CEE0081BF3A /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1058,15 +1010,19 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Vlad Chapaev (7UZ86QHPGM)";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GJ8GF93D7L;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				"HEADER_SEARCH_PATHS[arch=*]" = /usr/include/libxml2;
 				INFOPLIST_FILE = "$(SRCROOT)/KNURE TimeTable iOS/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Shogunate.KNURE-Sked";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1087,14 +1043,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos7.0]" = "iPhone Developer: Vlad Chapaev (7UZ86QHPGM)";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GJ8GF93D7L;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/KNURE TimeTable iOS/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Shogunate.KNURE-Sked";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
