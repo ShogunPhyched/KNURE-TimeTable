@@ -164,6 +164,7 @@ final class TimetableViewController: UIViewController {
 		)
 
 		hostingController.modalPresentationStyle = .popover
+		hostingController.popoverPresentationController?.sourceView = titleButton
 		present(hostingController, animated: true)
 	}
 }

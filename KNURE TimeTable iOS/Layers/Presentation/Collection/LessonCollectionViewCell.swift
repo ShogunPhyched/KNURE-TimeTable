@@ -21,16 +21,21 @@ struct LessonCollectionViewCellModel: Hashable {
 
 final class LessonCollectionViewCell: UICollectionViewCell {
 
-	var subjectId: String = ""
 	let title: UILabel
 	let subtitle: UILabel
 
 	override init(frame: CGRect) {
 		title = .init(frame: .zero)
+		title.adjustsFontForContentSizeCategory = true
+		title.font = .preferredFont(forTextStyle: .headline)
+
 		subtitle = .init(frame: .zero)
+		subtitle.adjustsFontForContentSizeCategory = true
+		subtitle.font = .preferredFont(forTextStyle: .subheadline)
+
 		super.init(frame: frame)
 
-		let stackView = UIStackView(arrangedSubviews: [title, subtitle])
+		let stackView = UIStackView(arrangedSubviews: [title, subtitle, UIView()])
 		stackView.axis = .vertical
 		stackView.spacing = 4
 
@@ -51,25 +56,27 @@ final class LessonCollectionViewCell: UICollectionViewCell {
 	}
 
 	func configure(with model: LessonCollectionViewCellModel) {
-		subjectId = model.subjectId
 		title.text = model.title
 		subtitle.text = model.subtitle
 
 		switch model.baseIdentifier {
 			case 0...2:
-				backgroundColor = .systemYellow.withAlphaComponent(0.25)
+				backgroundColor = .systemYellow.withAlphaComponent(0.35)
 
 			case 10...12:
-				backgroundColor = .systemGreen.withAlphaComponent(0.25)
+				backgroundColor = .systemGreen.withAlphaComponent(0.35)
 
 			case 20...24:
-				backgroundColor = .systemPink.withAlphaComponent(0.25)
+				backgroundColor = .systemPink.withAlphaComponent(0.35)
+
+			case 50...55:
+				backgroundColor = .systemBlue.withAlphaComponent(0.35)
 
 			case 1337:
 				backgroundColor = .clear
 
 			default:
-				backgroundColor = .tertiarySystemBackground
+				backgroundColor = .systemGray.withAlphaComponent(0.35)
 		}
 	}
 }

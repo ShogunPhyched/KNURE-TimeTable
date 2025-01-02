@@ -38,7 +38,7 @@ final class TimetableCollectionBuilder {
 				),
 				count: count
 			)
-			innerGroup.interItemSpacing = .fixed(8)
+			innerGroup.interItemSpacing = .fixed(4)
 			return innerGroup
 		}
 
@@ -69,11 +69,11 @@ final class TimetableCollectionBuilder {
 		verticalGroup.edgeSpacing = NSCollectionLayoutEdgeSpacing(
 			leading: .flexible(0.2),
 			top: nil,
-			trailing: .fixed(8),
+			trailing: .fixed(4),
 			bottom: nil
 		)
 
-		verticalGroup.interItemSpacing = .fixed(8)
+		verticalGroup.interItemSpacing = .fixed(4)
 
 		let header = NSCollectionLayoutBoundarySupplementaryItem(
 			layoutSize: .init(
@@ -87,7 +87,7 @@ final class TimetableCollectionBuilder {
 
 		let section = NSCollectionLayoutSection(group: verticalGroup)
 
-		section.interGroupSpacing = 8
+		section.interGroupSpacing = 4
 		section.boundarySupplementaryItems = [header]
 
 		return section
@@ -112,39 +112,39 @@ final class TimetableCollectionBuilder {
 				),
 				count: count
 			)
-			innerGroup.interItemSpacing = .fixed(8)
+			innerGroup.interItemSpacing = .fixed(4)
 			return innerGroup
 		}
 
 		let verticalGroup = NSCollectionLayoutGroup.vertical(
 			layoutSize: .init(
-				widthDimension: .fractionalWidth(0.4),
+				widthDimension: .absolute(100),
 				heightDimension: .fractionalHeight(0.9)
 			),
 			subitems: innerGroups
 		)
 
-		verticalGroup.interItemSpacing = .fixed(8)
+		verticalGroup.interItemSpacing = .fixed(4)
 
 		verticalGroup.edgeSpacing = NSCollectionLayoutEdgeSpacing(
 			leading: nil,
 			top: .fixed(60),
 			trailing: nil,
-			bottom: .fixed(8)
+			bottom: .fixed(4)
 		)
 
 		let section = NSCollectionLayoutSection(group: verticalGroup)
 
 		let header = NSCollectionLayoutBoundarySupplementaryItem(
 			layoutSize: .init(
-				widthDimension: .fractionalWidth(0.4),
+				widthDimension: .absolute(100),
 				heightDimension: .fractionalHeight(0.1)
 			),
 			elementKind: DayColumnHeaderView.identifier,
 			alignment: .top
 		)
 
-		section.interGroupSpacing = 8
+		section.interGroupSpacing = 4
 		section.boundarySupplementaryItems = [header]
 
 		return section
@@ -156,7 +156,7 @@ final class TimetableCollectionBuilder {
 	) -> UICollectionViewCompositionalLayout {
 		let configuration = UICollectionViewCompositionalLayoutConfiguration()
 		configuration.scrollDirection = scrollDirection()
-		configuration.interSectionSpacing = 8
+		configuration.interSectionSpacing = 4
 		return UICollectionViewCompositionalLayout(sectionProvider: { index, environment in
 			guard
 				let itemSection = dataSource().sectionIdentifier(for: index)
