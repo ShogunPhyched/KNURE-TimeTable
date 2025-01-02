@@ -13,8 +13,9 @@ struct AddItemsListView: View {
 	@Binding var path: [String]
 
 	@State private var searchText = ""
-	@State private var viewModel: [AddItemsListView.Model] = []
+	@State private var viewModel: [AddItemsListView.Section] = []
 	@State private var isErrorOccured: Bool = false
+	@State private var error: Error?
 
 	let interactor: AddItemsInteractor
 	let itemType: Item.Kind
@@ -26,38 +27,53 @@ struct AddItemsListView: View {
 					.controlSize(.large)
 			}
 			List(viewModel) { record in
-				Button {
-					guard !record.selected else { return }
-					Task {
-						try await interactor.save(item: record.item)
-						path.removeAll()
+				SwiftUI.Section(record.title) {
+					ForEach(record.models) { model in
+						Button {
+							guard !model.selected else { return }
+							Task {
+								try await interactor.save(item: model.item)
+								path.removeAll()
+							}
+						} label: {
+							AddItemCell(model: .init(title: model.title, selected: model.selected))
+						}
 					}
-				} label: {
-					AddItemCell(model: .init(title: record.title, selected: record.selected))
 				}
+				.font(.title)
 			}
-			.navigationTitle("Add Items List")
+			.searchable(text: $searchText)
+			.navigationTitle("Add \(itemType.presentationValue)")
+			.toolbarRole(.editor)
 			.listStyle(.plain)
 			.task {
 				do {
 					viewModel = try await interactor.obtainItems(kind: itemType)
 				} catch {
 					isErrorOccured = true
+					self.error = error
 				}
 			}
-			.searchable(text: $searchText)
-			.alert("An Error has occured", isPresented: $isErrorOccured) {
+			.alert("An Error has occured", isPresented: $isErrorOccured, actions: {
 				Button(role: .cancel) {
 					isErrorOccured = false
 				} label: {
 					Text("Ok")
 				}
-			}
+			}, message: {
+				Text(error?.localizedDescription ?? "")
+			})
 		}
 	}
 }
 
 extension AddItemsListView {
+
+	struct Section: Identifiable, Hashable {
+		var id: String { models.map(\.id).joined() }
+		let title: String
+		let models: [AddItemsListView.Model]
+	}
 
 	struct Model: Identifiable, Sendable, Hashable {
 		var id: String { String(item.identifier) }

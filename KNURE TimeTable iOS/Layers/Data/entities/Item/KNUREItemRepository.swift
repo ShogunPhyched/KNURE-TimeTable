@@ -65,7 +65,7 @@ extension KNUREItemRepository: ItemRepository {
 		}
 	}
 
-	func remote(items type: Item.Kind) async throws -> [Item]{
+	func remote(items type: Item.Kind) async throws -> [KNURE.Response.Section] {
 		let request = try KNURE.Request.make(endpoint: .item(type))
 		let decoder = JSONDecoder()
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -77,14 +77,14 @@ extension KNUREItemRepository: ItemRepository {
 
 private extension KNUREItemRepository {
 
-	func transform(response: KNURE.Response, by type: Item.Kind) -> [Item] {
+	func transform(response: KNURE.Response, by type: Item.Kind) -> [KNURE.Response.Section] {
 		switch type {
-		case .group:
-			return response.university.groups
-		case .teacher:
-			return response.university.teachers
-		case .auditory:
-			return response.university.auditories
+			case .group:
+				return response.university.groups
+			case .teacher:
+				return response.university.teachers
+			case .auditory:
+				return response.university.auditories
 		}
 	}
 }

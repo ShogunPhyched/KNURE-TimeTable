@@ -26,9 +26,6 @@ struct Item: Sendable, Hashable {
 	/// item selection indicator
 	var selected: Bool
 
-	/// Item's hint
-	let hint: String?
-
 	/// date wich specify the last time this item schedule was updated
 	let updated: Date?
 }

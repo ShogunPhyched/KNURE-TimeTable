@@ -7,18 +7,18 @@
 //
 
 protocol AddItemsInteractorInput: Sendable {
-	func obtainItems(kind: Item.Kind) async throws -> [AddItemsListView.Model]
+	func obtainItems(kind: Item.Kind) async throws -> [AddItemsListView.Section]
 	func save(item: Item) async throws
 }
 
 final class AddItemsInteractor {
 
-	private let itemsUseCase: any UseCase<Item.Kind, [Item]>
+	private let itemsUseCase: any UseCase<Item.Kind, [KNURE.Response.Section]>
 	private let saveItemUseCase: any UseCase<Item, Void>
 	private let addedItemsUseCase: any UseCase<Void, [String]>
 
 	init(
-		itemsUseCase: any UseCase<Item.Kind, [Item]>,
+		itemsUseCase: any UseCase<Item.Kind, [KNURE.Response.Section]>,
 		saveItemUseCase: any UseCase<Item, Void>,
 		addedItemsUseCase: any UseCase<Void, [String]>
 	) {
@@ -29,13 +29,18 @@ final class AddItemsInteractor {
 }
 
 extension AddItemsInteractor: AddItemsInteractorInput {
-	func obtainItems(kind: Item.Kind) async throws -> [AddItemsListView.Model] {
+	func obtainItems(kind: Item.Kind) async throws -> [AddItemsListView.Section] {
 		let addedItemsIdentifiers = try await addedItemsUseCase.execute(())
-		return try await itemsUseCase.execute(kind).map { item in
-			AddItemsListView.Model(
-				title: item.shortName,
-				selected: addedItemsIdentifiers.contains(item.identifier),
-				item: item
+		return try await itemsUseCase.execute(kind).map { section in
+			AddItemsListView.Section(
+				title: section.name,
+				models: section.items.map { item in
+					AddItemsListView.Model(
+						title: item.shortName,
+						selected: addedItemsIdentifiers.contains(item.identifier),
+						item: item
+					)
+				}
 			)
 		}
 	}

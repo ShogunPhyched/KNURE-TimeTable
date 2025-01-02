@@ -10,8 +10,11 @@ import SwiftUI
 
 struct ItemsListView: View {
 
-	@State private var viewModel: [ItemsListView.Model] = []
 	@State private var path: [String] = []
+
+	@State private var viewModel: [ItemsListView.Model] = []
+	@State private var isErrorOccured: Bool = false
+	@State private var error: Error?
 
 	let interactor: ItemsListInteractorInput
 
@@ -36,18 +39,27 @@ struct ItemsListView: View {
 									do {
 										try await interactor.updateTimetable(of: item.type, identifier: item.id)
 									} catch {
-										print(error)
+										isErrorOccured = true
+										self.error = error
 									}
 								}
 							}
 					}
 				}
 			}
-			.listStyle(.insetGrouped)
 			.onReceive(interactor.observeAddedItems()) { output in
 				viewModel = output
 			}
 			.navigationTitle("Items List")
+			.alert("An Error has occured", isPresented: $isErrorOccured, actions: {
+				Button(role: .cancel) {
+					isErrorOccured = false
+				} label: {
+					Text("Ok")
+				}
+			}, message: {
+				Text(error?.localizedDescription ?? "")
+			})
 			.toolbar {
 				ToolbarItem(placement: .confirmationAction) {
 					Button {

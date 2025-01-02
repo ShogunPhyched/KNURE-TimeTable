@@ -17,7 +17,7 @@ final class ItemsUseCase {
 
 extension ItemsUseCase: UseCase {
 
-	func execute(_ request: Item.Kind) async throws -> [Item] {
+	func execute(_ request: Item.Kind) async throws -> [KNURE.Response.Section] {
 		try await repository.remote(items: request)
 	}
 }

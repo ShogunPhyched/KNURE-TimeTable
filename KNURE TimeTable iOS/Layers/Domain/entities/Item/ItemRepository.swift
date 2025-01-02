@@ -38,5 +38,5 @@ protocol ItemRepository: Sendable {
 
 	/// <#Description#>
 	/// - Parameter type: <#type description#>
-	func remote(items type: Item.Kind) async throws -> [Item]
+	func remote(items type: Item.Kind) async throws -> [KNURE.Response.Section]
 }

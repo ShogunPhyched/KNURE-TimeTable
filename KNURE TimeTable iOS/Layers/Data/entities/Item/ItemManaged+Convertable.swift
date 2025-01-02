@@ -24,7 +24,6 @@ extension ItemManaged: Convertable {
 			fullName: fullName,
 			type: timetableType,
 			selected: selected,
-			hint: nil,
 			updated: Date(timeIntervalSince1970: lastUpdateTimestamp)
 		)
 	}

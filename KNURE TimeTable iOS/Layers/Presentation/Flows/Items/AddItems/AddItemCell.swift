@@ -18,10 +18,11 @@ struct AddItemCell: View {
 				if model.selected {
 					Text(model.title)
 						.fontWeight(.bold)
+						.font(.headline)
 				} else {
 					Text(model.title)
+						.font(.headline)
 				}
-
 			}
 			Spacer()
 			if model.selected {
