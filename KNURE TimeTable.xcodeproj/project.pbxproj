@@ -74,8 +74,6 @@
 		D48A24DE2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24CF2C1A1CEE0081BF3A /* InfoPlist.strings */; };
 		D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D12C1A1CEE0081BF3A /* Localizable.strings */; };
 		D48A24E12C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D52C1A1CEE0081BF3A /* Localizable.strings */; };
-		D48A24E22C1A1CEE0081BF3A /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D72C1A1CEE0081BF3A /* Main.strings */; };
-		D48A24E32C1A1CEE0081BF3A /* MainIpad.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D92C1A1CEE0081BF3A /* MainIpad.strings */; };
 		D4ACC83A2B8E7AB200AE732A /* AddItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC8392B8E7AB200AE732A /* AddItemsListView.swift */; };
 		D4ACC83C2B8E7AC000AE732A /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC83B2B8E7AC000AE732A /* AddItemCell.swift */; };
 /* End PBXBuildFile section */
@@ -184,8 +182,6 @@
 		D48A24CE2C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D48A24D02C1A1CEE0081BF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D48A24D42C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D48A24D62C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		D48A24D82C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MainIpad.strings; sourceTree = "<group>"; };
 		D4ACC8392B8E7AB200AE732A /* AddItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsListView.swift; sourceTree = "<group>"; };
 		D4ACC83B2B8E7AC000AE732A /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +212,7 @@
 				771A83D622A707E1006964D7 /* Convertable.swift */,
 				77D191122552CA60001771F9 /* NameSpace.swift */,
 				7753DA55253348530051A997 /* Omissible.swift */,
+				D468A5A02CDFFB58002AD433 /* Formatters.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -235,7 +232,6 @@
 			children = (
 				777AE2112221988E00EAEE20 /* extensions */,
 				77915966220CB09200A8FC70 /* entities */,
-				770290F222081C8800B82CF4 /* DataStorage.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -243,11 +239,10 @@
 		770290F422081C8800B82CF4 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D468A5A02CDFFB58002AD433 /* Formatters.swift */,
 				775A3F9822217FD700931A1F /* Main.swift */,
+				D474E1D92CC2ECD1009A0709 /* Assembly.swift */,
 				D44CDA962CD2C7BA00B05CA5 /* Collection */,
 				D48A24BD2C1637DA0081BF3A /* Flows */,
-				7702912222081C8800B82CF4 /* LaunchScreen.xib */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -334,14 +329,14 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
-		777AE20E2221988E00EAEE20 /* Parser */ = {
+		777AE20E2221988E00EAEE20 /* Import */ = {
 			isa = PBXGroup;
 			children = (
 				7766B3062561473000CE638F /* Response */,
 				777AE2102221988E00EAEE20 /* ImportService.swift */,
 				77713ED623F80D70006E3E4C /* KNURELessonImportService.swift */,
 			);
-			path = Parser;
+			path = Import;
 			sourceTree = "<group>";
 		};
 		777AE2112221988E00EAEE20 /* extensions */ = {
@@ -364,7 +359,7 @@
 		778E3117227C89DC00D138B5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				777AE20E2221988E00EAEE20 /* Parser */,
+				777AE20E2221988E00EAEE20 /* Import */,
 				77D388C9224F512100451611 /* NetworkService */,
 				770D9F7B223E41E40037C5B1 /* StorageService */,
 				77F16023240313750028966F /* KNURE.Request.swift */,
@@ -511,7 +506,6 @@
 		D48A24BD2C1637DA0081BF3A /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				D474E1D92CC2ECD1009A0709 /* Assembly.swift */,
 				D48A247F2C14700A0081BF3A /* RootTabView.swift */,
 				778DC8592364C04000580786 /* Timetable */,
 				7712334823BCEF6400CB01D6 /* Items */,
@@ -528,8 +522,8 @@
 				D48A24CF2C1A1CEE0081BF3A /* InfoPlist.strings */,
 				D48A24D12C1A1CEE0081BF3A /* Localizable.strings */,
 				D48A24D52C1A1CEE0081BF3A /* Localizable.strings */,
-				D48A24D72C1A1CEE0081BF3A /* Main.strings */,
-				D48A24D92C1A1CEE0081BF3A /* MainIpad.strings */,
+				7702912222081C8800B82CF4 /* LaunchScreen.xib */,
+				770290F222081C8800B82CF4 /* DataStorage.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -647,14 +641,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D48A24E22C1A1CEE0081BF3A /* Main.strings in Resources */,
 				7702916322081C8800B82CF4 /* LaunchScreen.xib in Resources */,
 				D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */,
 				D48A24DC2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */,
 				D48A24E12C1A1CEE0081BF3A /* Localizable.strings in Resources */,
 				D48A24DB2C1A1CEE0081BF3A /* Images.xcassets in Resources */,
 				D48A24DE2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */,
-				D48A24E32C1A1CEE0081BF3A /* MainIpad.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,22 +770,6 @@
 				D48A24D42C1A1CEE0081BF3A /* ru */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		D48A24D72C1A1CEE0081BF3A /* Main.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D48A24D62C1A1CEE0081BF3A /* ru */,
-			);
-			name = Main.strings;
-			sourceTree = "<group>";
-		};
-		D48A24D92C1A1CEE0081BF3A /* MainIpad.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D48A24D82C1A1CEE0081BF3A /* ru */,
-			);
-			name = MainIpad.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -937,6 +913,7 @@
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -997,6 +974,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
