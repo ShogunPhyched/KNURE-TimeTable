@@ -115,6 +115,7 @@ final class TimetableViewController: UIViewController {
 					), animated: false
 				)
 				collectionView?.reloadData()
+				self.viewModel.update()
 			}
 			.store(in: &cancellables)
 

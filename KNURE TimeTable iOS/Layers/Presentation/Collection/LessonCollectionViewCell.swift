@@ -21,8 +21,8 @@ struct LessonCollectionViewCellModel: Hashable {
 
 final class LessonCollectionViewCell: UICollectionViewCell {
 
-	let title: UILabel
-	let subtitle: UILabel
+	private let title: UILabel
+	private let subtitle: UILabel
 
 	override init(frame: CGRect) {
 		title = .init(frame: .zero)
@@ -67,10 +67,16 @@ final class LessonCollectionViewCell: UICollectionViewCell {
 				backgroundColor = .systemGreen.withAlphaComponent(0.35)
 
 			case 20...24:
+				backgroundColor = .systemPurple.withAlphaComponent(0.35)
+
+			case 40...41:
 				backgroundColor = .systemPink.withAlphaComponent(0.35)
 
 			case 50...55:
 				backgroundColor = .systemBlue.withAlphaComponent(0.35)
+
+			case 60...65:
+				backgroundColor = .systemPink.withAlphaComponent(0.35)
 
 			case 1337:
 				backgroundColor = .clear

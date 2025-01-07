@@ -29,6 +29,7 @@ final class DayColumnHeaderView: UICollectionReusableView {
 		backgroundView.layer.cornerRadius = 12
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.textAlignment = .center
+		label.font = .preferredFont(forTextStyle: .body)
 		label.adjustsFontForContentSizeCategory = true
 
 		NSLayoutConstraint.activate([

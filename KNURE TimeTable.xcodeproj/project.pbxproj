@@ -74,6 +74,8 @@
 		D48A24DE2C1A1CEE0081BF3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24CF2C1A1CEE0081BF3A /* InfoPlist.strings */; };
 		D48A24DF2C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D12C1A1CEE0081BF3A /* Localizable.strings */; };
 		D48A24E12C1A1CEE0081BF3A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D48A24D52C1A1CEE0081BF3A /* Localizable.strings */; };
+		D490193F2D28792F00F5B11F /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = D490193E2D28792B00F5B11F /* Array+Unique.swift */; };
+		D49019432D2B404600F5B11F /* HorizontalTimeColumnHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49019422D2B404600F5B11F /* HorizontalTimeColumnHeader.swift */; };
 		D4ACC83A2B8E7AB200AE732A /* AddItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC8392B8E7AB200AE732A /* AddItemsListView.swift */; };
 		D4ACC83C2B8E7AC000AE732A /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC83B2B8E7AC000AE732A /* AddItemCell.swift */; };
 /* End PBXBuildFile section */
@@ -182,6 +184,8 @@
 		D48A24CE2C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D48A24D02C1A1CEE0081BF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D48A24D42C1A1CEE0081BF3A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D490193E2D28792B00F5B11F /* Array+Unique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
+		D49019422D2B404600F5B11F /* HorizontalTimeColumnHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTimeColumnHeader.swift; sourceTree = "<group>"; };
 		D4ACC8392B8E7AB200AE732A /* AddItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsListView.swift; sourceTree = "<group>"; };
 		D4ACC83B2B8E7AC000AE732A /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +211,7 @@
 		770290E122081C8700B82CF4 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				D490193E2D28792B00F5B11F /* Array+Unique.swift */,
 				D468A5A22CE9095B002AD433 /* Sequence+Grouping.swift */,
 				7778E46722D1096000477BFE /* Configuration.swift */,
 				771A83D622A707E1006964D7 /* Convertable.swift */,
@@ -467,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */,
+				D49019422D2B404600F5B11F /* HorizontalTimeColumnHeader.swift */,
 				D44CDA9B2CD2CB1B00B05CA5 /* DayColumnHeaderView.swift */,
 				D44CDA992CD2C9F700B05CA5 /* LessonCollectionViewCell.swift */,
 			);
@@ -675,6 +681,7 @@
 				7752F9392247E46E003DC9FE /* CoreDataService.swift in Sources */,
 				77713ED723F80D70006E3E4C /* KNURELessonImportService.swift in Sources */,
 				D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */,
+				D490193F2D28792F00F5B11F /* Array+Unique.swift in Sources */,
 				7752F93D2247F018003DC9FE /* CoreDataServiceImpl.swift in Sources */,
 				77BEB5EB25618792002AB818 /* KNURE.Response.Lesson.swift in Sources */,
 				D44CDA9C2CD2CB3100B05CA5 /* DayColumnHeaderView.swift in Sources */,
@@ -694,6 +701,7 @@
 				D48A24C12C1638210081BF3A /* SettingsView.swift in Sources */,
 				D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */,
 				775A3F9922217FD700931A1F /* Main.swift in Sources */,
+				D49019432D2B404600F5B11F /* HorizontalTimeColumnHeader.swift in Sources */,
 				771A83D522A7038C006964D7 /* ItemManaged+Convertable.swift in Sources */,
 				D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */,
 				D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */,

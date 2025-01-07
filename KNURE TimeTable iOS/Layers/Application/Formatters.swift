@@ -13,6 +13,7 @@ enum Formatters {
 	static let timeFormatter: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "HH:mm"
+		formatter.timeZone = TimeZone(identifier: "Europe/Kiev")
 		return formatter
 	}()
 

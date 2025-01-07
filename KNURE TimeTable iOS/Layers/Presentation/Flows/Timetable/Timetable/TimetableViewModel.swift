@@ -15,11 +15,19 @@ final class TimetableViewModel {
 
 	var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>!
 
+	@MainActor func update() {
+		update(with: TimetableModel(sections: dataSource!.snapshot().sectionIdentifiers), animated: false)
+	}
+
 	@MainActor func update(with model: TimetableModel, animated: Bool) {
 		var snapshot = NSDiffableDataSourceSnapshot<TimetableModel.Section, LessonCollectionViewCellModel>()
 		for section in model.sections {
 			snapshot.appendSections([section])
-			snapshot.appendItems(section.groups.flatMap(\.cellModels), toSection: section)
+			var items = section.groups.flatMap(\.cellModels)
+			if isVerticalMode {
+				items = items.filter { !$0.dummy }
+			}
+			snapshot.appendItems(items, toSection: section)
 		}
 		dataSource?.apply(snapshot, animatingDifferences: animated)
 	}
