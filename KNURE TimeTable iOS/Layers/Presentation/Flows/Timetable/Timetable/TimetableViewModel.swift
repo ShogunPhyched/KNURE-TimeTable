@@ -13,19 +13,23 @@ final class TimetableViewModel {
 	@Published var addedItems: [Item] = []
 	@Published var isVerticalMode: Bool = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
 
-	var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>!
+	var dataSource: UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>!
 
 	@MainActor func update() {
-		update(with: TimetableModel(sections: dataSource!.snapshot().sectionIdentifiers), animated: false)
+		update(with: TimetableViewModel.CollectionModel(sections: dataSource!.snapshot().sectionIdentifiers), animated: false)
 	}
 
-	@MainActor func update(with model: TimetableModel, animated: Bool) {
-		var snapshot = NSDiffableDataSourceSnapshot<TimetableModel.Section, LessonCollectionViewCellModel>()
+	@MainActor func update(with model: TimetableViewModel.CollectionModel, animated: Bool) {
+		var snapshot = NSDiffableDataSourceSnapshot<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>()
 		for section in model.sections {
 			snapshot.appendSections([section])
-			var items = section.groups.flatMap(\.cellModels)
+			var items = section.cellModels
 			if isVerticalMode {
-				items = items.filter { !$0.dummy }
+				 for index in items.indices {
+					 let item = items[index]
+					 items[index] = item.filter { !$0.dummy }
+				}
+				items = items.filter { !$0.isEmpty }
 			}
 			snapshot.appendItems(items, toSection: section)
 		}
@@ -33,16 +37,15 @@ final class TimetableViewModel {
 	}
 }
 
-struct TimetableModel {
+extension TimetableViewModel {
 
-	let sections: [Section]
+	struct CollectionModel {
 
-	struct Section: Hashable {
+		let sections: [Section]
 
-		let groups: [Group]
+		struct Section: Hashable {
 
-		struct Group: Hashable {
-			let cellModels: [LessonCollectionViewCellModel]
+			let cellModels: [[CompositionalLessonCell.Model]]
 		}
 	}
 }

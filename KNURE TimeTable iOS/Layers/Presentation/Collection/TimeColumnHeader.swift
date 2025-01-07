@@ -23,9 +23,11 @@ final class TimeColumnHeader: UICollectionReusableView {
 	override init(frame: CGRect) {
 		startLabel = .init(frame: .zero)
 		startLabel.textAlignment = .right
+		startLabel.font = .preferredFont(forTextStyle: .body)
 
 		endLabel = .init(frame: .zero)
 		endLabel.textAlignment = .right
+		endLabel.font = .preferredFont(forTextStyle: .body)
 		super.init(frame: frame)
 
 		let stackView = UIStackView(arrangedSubviews: [startLabel, endLabel])

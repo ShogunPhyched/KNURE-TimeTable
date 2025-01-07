@@ -14,47 +14,33 @@ final class TimetableCollectionBuilder {
 	private let estimatedItemHeight: CGFloat = 60.0
 	private let itemSpacing: CGFloat = 4.0
 
-	private func makeVerticalSection(_ section: TimetableModel.Section) -> NSCollectionLayoutSection {
-		let horizontalGroups: [NSCollectionLayoutGroup] = section.groups.enumerated().map { index, group in
-			let count = group.cellModels.count
+	private func makeVerticalSection(_ section: TimetableViewModel.CollectionModel.Section) -> NSCollectionLayoutSection {
+		let timeSupplementaryItem = NSCollectionLayoutSupplementaryItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(estimatedItemHeight)
+			),
+			elementKind: TimeColumnHeader.identifier,
+			containerAnchor: NSCollectionLayoutAnchor(edges: .leading),
+			itemAnchor: NSCollectionLayoutAnchor(edges: .trailing, absoluteOffset: CGPoint(x: -8.0, y: 0.0))
+		)
+		timeSupplementaryItem.zIndex = -1
 
-			let timeSupplementaryItem = NSCollectionLayoutSupplementaryItem(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(1.0),
-					heightDimension: .absolute(estimatedItemHeight)
-				),
-				elementKind: TimeColumnHeader.identifier + "_\(index)",
-				containerAnchor: NSCollectionLayoutAnchor(edges: .leading),
-				itemAnchor: NSCollectionLayoutAnchor(edges: .trailing, absoluteOffset: CGPoint(x: -8.0, y: 0.0))
-			)
-			timeSupplementaryItem.zIndex = -1
-
-			let horizontalGroup = NSCollectionLayoutGroup.horizontal(
-				layoutSize: .init(
-					widthDimension: .fractionalWidth(1.0),
-					heightDimension: .estimated(estimatedItemHeight)
-				),
-				subitems: group.cellModels.enumerated().map { subindex, _ in
-					NSCollectionLayoutItem(
-						layoutSize: NSCollectionLayoutSize(
-							widthDimension: .fractionalWidth(1.0 / CGFloat(count)),
-							heightDimension: .estimated(estimatedItemHeight)
-						),
-						supplementaryItems: subindex == 0 ? [timeSupplementaryItem] : []
-					)
-				}
-			)
-			horizontalGroup.interItemSpacing = .fixed(itemSpacing)
-
-			return horizontalGroup
-		}
+		let layoutItem = NSCollectionLayoutItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(estimatedItemHeight)
+			),
+			supplementaryItems: [timeSupplementaryItem]
+		)
 
 		let verticalGroup = NSCollectionLayoutGroup.vertical(
 			layoutSize: .init(
 				widthDimension: .fractionalWidth(0.8),
 				heightDimension: .estimated(estimatedItemHeight)
 			),
-			subitems: horizontalGroups
+			repeatingSubitem: layoutItem,
+			count: section.cellModels.count
 		)
 
 		verticalGroup.edgeSpacing = NSCollectionLayoutEdgeSpacing(
@@ -85,34 +71,24 @@ final class TimetableCollectionBuilder {
 	}
 
 	private func makeHorizontalSection(
-		_ section: TimetableModel.Section,
+		_ section: TimetableViewModel.CollectionModel.Section,
 		maxNumberOfPairs: Int
 	) -> NSCollectionLayoutSection {
-		let horizontalGroups = section.groups.map { group in
-			let count = group.cellModels.count
-			let horizontalGroup = NSCollectionLayoutGroup.horizontal(
-				layoutSize: NSCollectionLayoutSize(
-					widthDimension: .fractionalWidth(1.0),
-					heightDimension: .fractionalHeight(1.0 / CGFloat(maxNumberOfPairs))
-				),
-				repeatingSubitem: NSCollectionLayoutItem(
-					layoutSize: NSCollectionLayoutSize(
-						widthDimension:  .fractionalWidth(1.0 / CGFloat(count)),
-						heightDimension: .fractionalHeight(1.0)
-					)
-				),
-				count: count
+
+		let layoutItem = NSCollectionLayoutItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .fractionalHeight(1.0 / CGFloat(maxNumberOfPairs))
 			)
-			horizontalGroup.interItemSpacing = .fixed(itemSpacing)
-			return horizontalGroup
-		}
+		)
 
 		let verticalGroup = NSCollectionLayoutGroup.vertical(
 			layoutSize: .init(
 				widthDimension: .absolute(100),
 				heightDimension: .fractionalHeight(0.9)
 			),
-			subitems: horizontalGroups
+			repeatingSubitem: layoutItem,
+			count: section.cellModels.count
 		)
 
 		verticalGroup.interItemSpacing = .fixed(itemSpacing)
@@ -143,7 +119,7 @@ final class TimetableCollectionBuilder {
 
 	func makeLayout(
 		scrollDirection: () -> UICollectionView.ScrollDirection,
-		dataSource: @escaping () -> UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>
+		dataSource: @escaping () -> UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>
 	) -> UICollectionViewCompositionalLayout {
 		let configuration = UICollectionViewCompositionalLayoutConfiguration()
 		configuration.scrollDirection = scrollDirection()
@@ -177,7 +153,7 @@ final class TimetableCollectionBuilder {
 
 				case .horizontal:
 					let allSections = dataSource().snapshot().sectionIdentifiers
-					let maxNumberOfPairs = allSections.flatMap(\.groups).flatMap(\.cellModels).map(\.number).max() ?? 1
+					let maxNumberOfPairs = allSections.flatMap(\.cellModels).flatMap({ $0 }).map(\.number).max() ?? 1
 					return self.makeHorizontalSection(itemSection, maxNumberOfPairs: maxNumberOfPairs)
 
 				@unknown default:
@@ -191,9 +167,9 @@ final class TimetableCollectionBuilder {
 		scrollDirection: @escaping () -> UICollectionView.ScrollDirection
 	) -> (
 		collection: UICollectionView,
-		dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>
+		dataSource: UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>
 	) {
-		var dataSource: UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>!
+		var dataSource: UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>!
 
 		let collection = UICollectionView(
 			frame: .zero,
@@ -203,12 +179,12 @@ final class TimetableCollectionBuilder {
 			)
 		)
 		let registration = UICollectionView.CellRegistration<
-			LessonCollectionViewCell, LessonCollectionViewCellModel
+			CompositionalLessonCell, [CompositionalLessonCell.Model]
 		> { cell, indexPath, item in
 			cell.configure(with: item)
 		}
 
-		dataSource = UICollectionViewDiffableDataSource<TimetableModel.Section, LessonCollectionViewCellModel>(
+		dataSource = UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>(
 			collectionView: collection
 		) { collectionView, indexPath, item in
 			collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: item)
@@ -217,7 +193,7 @@ final class TimetableCollectionBuilder {
 		let dayHeaderRegistration = UICollectionView.SupplementaryRegistration<DayColumnHeaderView>(
 			elementKind: DayColumnHeaderView.identifier
 		) { view, _, indexPath in
-			if let model = dataSource.itemIdentifier(for: indexPath) {
+			if let model = dataSource.itemIdentifier(for: indexPath)?.first {
 				let formatter = scrollDirection() == .vertical ? Formatters.verticalDate : Formatters.horizontalDate
 				view.configure(
 					title: formatter.string(from: model.startTime),
@@ -226,29 +202,23 @@ final class TimetableCollectionBuilder {
 			}
 		}
 
-		let timeHeaderRegistrations = (0..<10)
-			.map { TimeColumnHeader.identifier + "_\($0)" }
-			.reduce(into: [String: UICollectionView.SupplementaryRegistration<TimeColumnHeader>]()) { registrations, kind in
-				let registration = UICollectionView.SupplementaryRegistration<TimeColumnHeader>(
-					elementKind: kind
-				) { view, _, indexPath in
-					if let model = dataSource.itemIdentifier(for: indexPath) {
-						view.configure(
-							startTime: Formatters.timeFormatter.string(from: model.startTime),
-							endTime: Formatters.timeFormatter.string(from: model.endTime)
-						)
-					}
-				}
-
-				registrations[kind] = registration
+		let timeHeaderRegistration = UICollectionView.SupplementaryRegistration<TimeColumnHeader>(
+			elementKind: TimeColumnHeader.identifier
+		) { view, _, indexPath in
+			if let model = dataSource.itemIdentifier(for: indexPath)?.first {
+				view.configure(
+					startTime: Formatters.timeFormatter.string(from: model.startTime),
+					endTime: Formatters.timeFormatter.string(from: model.endTime)
+				)
 			}
+		}
 
 		let horizontalTimeHeaderRegistration = UICollectionView.SupplementaryRegistration<HorizontalTimeColumnHeader>(
 			elementKind: HorizontalTimeColumnHeader.identifier
 		) { view, _, indexPath in
 
 			let allSections = dataSource.snapshot().sectionIdentifiers
-			let cellModels = allSections.flatMap(\.groups).flatMap(\.cellModels)
+			let cellModels = allSections.flatMap({ $0.cellModels }).flatMap { $0 }
 
 			let startTimes = cellModels.map(\.startTime).map(Formatters.timeFormatter.string(from:)).unique.sorted()
 			let endTimes = cellModels.map(\.endTime).map(Formatters.timeFormatter.string(from:)).unique.sorted()
@@ -263,18 +233,13 @@ final class TimetableCollectionBuilder {
 		dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
 			switch kind {
 				case DayColumnHeaderView.identifier:
-					return collectionView.dequeueConfiguredReusableSupplementary(using: dayHeaderRegistration, for: indexPath)
+					collectionView.dequeueConfiguredReusableSupplementary(using: dayHeaderRegistration, for: indexPath)
 
 				case HorizontalTimeColumnHeader.identifier:
-					return collectionView.dequeueConfiguredReusableSupplementary(using: horizontalTimeHeaderRegistration, for: indexPath)
+					collectionView.dequeueConfiguredReusableSupplementary(using: horizontalTimeHeaderRegistration, for: indexPath)
 
 				default:
-					let index = kind.split(separator: "_").last!.compactMap({ Int(String($0)) }).first!
-					let indexPath = IndexPath(item: index, section: indexPath.section)
-					return collectionView.dequeueConfiguredReusableSupplementary(
-						using: timeHeaderRegistrations[kind]!,
-						for: indexPath
-					)
+					collectionView.dequeueConfiguredReusableSupplementary(using: timeHeaderRegistration, for: indexPath)
 			}
 		}
 

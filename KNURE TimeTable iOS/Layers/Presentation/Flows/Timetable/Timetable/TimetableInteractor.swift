@@ -18,7 +18,7 @@ protocol TimetableInteractorInput: Sendable {
 
 	func observeTimetableUpdates(
 		identifier: String
-	) -> AnyPublisher<TimetableModel, Never>
+	) -> AnyPublisher<TimetableViewModel.CollectionModel, Never>
 }
 
 final class TimetableInteractor {
@@ -58,14 +58,14 @@ extension TimetableInteractor: TimetableInteractorInput {
 
 	func observeTimetableUpdates(
 		identifier: String
-	) -> AnyPublisher<TimetableModel, Never> {
+	) -> AnyPublisher<TimetableViewModel.CollectionModel, Never> {
 		timetableSubscription
 			.subscribe(identifier)
 			.map { timetable in
 				let sections = timetable.map { lessons in
 					let groups = lessons.grouped(by: \.number).map { lessons in
 						let cellModels = lessons.map { lesson in
-							LessonCollectionViewCellModel(
+							CompositionalLessonCell.Model(
 								subjectId: lesson.subject.identifier ?? "",
 								baseIdentifier: lesson.type.baseIdentifier,
 								title: lesson.subject.brief ?? "",
@@ -77,13 +77,13 @@ extension TimetableInteractor: TimetableInteractorInput {
 							)
 						}
 
-						return TimetableModel.Section.Group(cellModels: cellModels)
+						return cellModels
 					}
 
-					return TimetableModel.Section(groups: groups)
+					return TimetableViewModel.CollectionModel.Section(cellModels: groups)
 				}
 
-				return TimetableModel(sections: sections)
+				return TimetableViewModel.CollectionModel(sections: sections)
 			}
 			.eraseToAnyPublisher()
 	}
