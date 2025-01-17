@@ -12,10 +12,12 @@ import Combine
 final class CoreDataServiceImpl {
 
 	private let persistentContainer: NSPersistentContainer
+//	private let migrationService: MigrationService
 
 	init(persistentContainer: NSPersistentContainer) {
 		self.persistentContainer = persistentContainer
 		self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+//		self.migrationService = MigrationService(persistentContainer: persistentContainer)
 	}
 }
 

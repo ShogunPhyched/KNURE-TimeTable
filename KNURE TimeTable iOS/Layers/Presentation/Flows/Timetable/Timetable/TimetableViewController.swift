@@ -68,7 +68,8 @@ final class TimetableViewController: UIViewController {
 			scrollDirection: { [weak self] in
 				guard let self else { return .horizontal }
 				return self.viewModel.isVerticalMode ? .vertical : .horizontal
-			}
+			},
+			lessonCellDelegate: self
 		)
 		viewModel.dataSource = output.dataSource
 		view = TimetableMainView(collectionView: output.collection)
@@ -76,6 +77,9 @@ final class TimetableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+		print("Document Directory Path: \(documentsDirectory.path)")
 
 		viewModel.$addedItems
 			.compactMap { items in
@@ -162,6 +166,18 @@ final class TimetableViewController: UIViewController {
 					try await self?.interactor.selectItem(identifier: item.identifier)
 				}
 			}
+		)
+
+		hostingController.modalPresentationStyle = .popover
+		hostingController.popoverPresentationController?.sourceView = titleButton
+		present(hostingController, animated: true)
+	}
+}
+
+extension TimetableViewController: LessonCellDelegate {
+	func didTapLesson(_ cell: CompositionalLessonCell.Model) {
+		let hostingController = UIHostingController(
+			rootView: Assembly.shared.makeLessonDetailView(cell.identifier)
 		)
 
 		hostingController.modalPresentationStyle = .popover

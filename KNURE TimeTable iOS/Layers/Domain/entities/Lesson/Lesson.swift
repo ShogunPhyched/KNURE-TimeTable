@@ -10,6 +10,10 @@ import Foundation
 
 struct Lesson: Sendable, Equatable {
 
+	let identifier: String
+
+	let timeZone: TimeZone
+
 	let auditory: String
 
 	let start: Date

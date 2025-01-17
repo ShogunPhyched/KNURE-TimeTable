@@ -56,6 +56,8 @@ private extension Array where Element == [Lesson] {
 		for index in 0..<self.count {
 			for subindex in range where !self[index].contains(where: { $0.number == subindex }) {
 				let dummy = Lesson(
+					identifier: UUID().uuidString,
+					timeZone: TimeZone.current,
 					auditory: "",
 					start: self[index].first!.start,
 					end: self[index].first!.end,

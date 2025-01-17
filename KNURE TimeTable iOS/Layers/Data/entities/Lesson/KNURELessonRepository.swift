@@ -41,7 +41,7 @@ extension KNURELessonRepository: LessonRepository {
 
 	func local(fetch identifier: String) async throws -> Lesson {
 		let request = NSFetchRequest<LessonManaged>(entityName: "LessonManaged")
-		request.predicate = NSPredicate(format: "item.identifier = %@", identifier)
+		request.predicate = NSPredicate(format: "identifier = %@", identifier)
 		guard let lesson = try await coreDataService.fetch(request, { $0.convert() }).first else {
 			throw Error.lessonNotFound
 		}

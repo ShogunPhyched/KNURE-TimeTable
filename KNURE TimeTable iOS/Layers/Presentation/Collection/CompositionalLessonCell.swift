@@ -8,6 +8,12 @@
 
 import UIKit
 
+@MainActor
+protocol LessonCellDelegate: AnyObject {
+
+	func didTapLesson(_ cell: CompositionalLessonCell.Model)
+}
+
 final class CompositionalLessonCell: UICollectionViewCell {
 
 	private var cells: [LessonCell] = []
@@ -38,11 +44,12 @@ final class CompositionalLessonCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configure(with models: [Model]) {
+	func configure(with models: [Model], delegate: LessonCellDelegate) {
 		stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 		for model in models {
 			let cell = LessonCell()
 			cell.configure(with: model)
+			cell.delegate = delegate
 			cells.append(cell)
 			stackView.addArrangedSubview(cell)
 		}
@@ -53,6 +60,13 @@ final class CompositionalLessonCell: UICollectionViewCell {
 		private let title: UILabel
 		private let subtitle: UILabel
 		private let decorationView: UIView
+
+		private var model: Model?
+
+		private let tapGestureRecognizer: UITapGestureRecognizer
+		private let longPressGestureRecognizer: UILongPressGestureRecognizer
+
+		weak var delegate: LessonCellDelegate?
 
 		override init(frame: CGRect) {
 			title = .init(frame: .zero)
@@ -65,6 +79,9 @@ final class CompositionalLessonCell: UICollectionViewCell {
 
 			decorationView = UIView()
 			decorationView.layer.cornerRadius = 2
+
+			tapGestureRecognizer = UITapGestureRecognizer()
+			longPressGestureRecognizer = UILongPressGestureRecognizer()
 
 			super.init(frame: frame)
 
@@ -89,6 +106,12 @@ final class CompositionalLessonCell: UICollectionViewCell {
 				rootStackView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
 				rootStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
 			])
+
+			addGestureRecognizer(tapGestureRecognizer)
+			addGestureRecognizer(longPressGestureRecognizer)
+
+			tapGestureRecognizer.addTarget(self, action: #selector(tapGestureRecognizerTapped))
+			longPressGestureRecognizer.addTarget(self, action: #selector(longPressGestureRecognizerTapped))
 		}
 
 		@available(*, unavailable)
@@ -96,25 +119,8 @@ final class CompositionalLessonCell: UICollectionViewCell {
 			fatalError("init(coder:) has not been implemented")
 		}
 
-		override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-			UIView.animate(withDuration: 0.5) {
-				self.backgroundColor = self.backgroundColor?.withAlphaComponent(1.0)
-			}
-		}
-
-		override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-			UIView.animate(withDuration: 0.5) {
-				self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.35)
-			}
-		}
-
-		override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-			UIView.animate(withDuration: 0.5) {
-				self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.35)
-			}
-		}
-
 		func configure(with model: Model) {
+			self.model = model
 			title.text = model.title
 			subtitle.text = model.subtitle
 
@@ -152,12 +158,35 @@ final class CompositionalLessonCell: UICollectionViewCell {
 					decorationView.backgroundColor = .systemGray
 			}
 		}
+
+		@objc
+		private func tapGestureRecognizerTapped() {
+			UIView.animate(withDuration: 0.15, animations: {
+				self.backgroundColor = self.backgroundColor?.withAlphaComponent(1.0)
+			}, completion: { _ in
+				if let model = self.model {
+					self.delegate?.didTapLesson(model)
+				}
+
+				UIView.animate(withDuration: 0.15) {
+					self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.35)
+
+				}
+			})
+		}
+
+		@objc
+		private func longPressGestureRecognizerTapped() {
+			UIView.animate(withDuration: 0.2) {
+				self.backgroundColor = self.backgroundColor?.withAlphaComponent(1.0)
+			}
+		}
 	}
 }
 
 extension CompositionalLessonCell {
 	struct Model: Hashable {
-		let subjectId: String
+		let identifier: String
 		let baseIdentifier: Int64
 		let title: String
 		let subtitle: String

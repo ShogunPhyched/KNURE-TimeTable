@@ -6,6 +6,7 @@
 //  Copyright © 2019 Vladislav Chapaev. All rights reserved.
 //
 
+import Foundation
 import CoreData
 
 final class KNURELessonImportService {
@@ -43,15 +44,20 @@ extension KNURELessonImportService: ImportService {
 				.compactMap { event -> Lesson? in
 					guard let subject = response.subjects.first(where: { $0.id == event.subjectId }) else { return nil }
 					guard let type = response.types.first(where: { $0.id == event.type }) else { return nil }
-					return Lesson(event: event, subject: subject, type: type)
+					return KNURELessonImportService.Lesson(event: event, subject: subject, type: type)
 				}
-				.map { event -> LessonManaged in
-					let lesson = event.event.toManagedObject(in: context)
-					lesson.subject = subjects.first { $0.identifier == "\(event.subject.id)" }
-					lesson.type = types.first { $0.identifier == event.type.id }
-					lesson.setValue(NSSet(array: groups), forKey: "groups")
-					lesson.setValue(NSSet(array: teachers), forKey: "teachers")
-					return lesson
+				.map { (lesson: KNURELessonImportService.Lesson) -> LessonManaged in
+					let object = lesson.event.toManagedObject(in: context)
+					object.identifier = UUID().uuidString
+					object.subject = subjects.first { $0.identifier == "\(lesson.subject.id)" }
+					object.type = types.first { $0.identifier == lesson.type.id }
+
+					let groupIds = lesson.event.groups.compactMap(String.init)
+					object.setValue(NSSet(array: groups.filter({ groupIds.contains($0.identifier ?? "") })), forKey: "groups")
+
+					let teacherIds = lesson.event.teachers.compactMap(String.init)
+					object.setValue(NSSet(array: teachers.filter({ teacherIds.contains($0.identifier ?? "") })), forKey: "teachers")
+					return object
 				}
 
 			item.setValue(NSSet(array: lessons), forKey: "lessons")

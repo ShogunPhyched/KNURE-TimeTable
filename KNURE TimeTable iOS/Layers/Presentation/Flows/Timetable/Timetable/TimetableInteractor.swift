@@ -66,7 +66,7 @@ extension TimetableInteractor: TimetableInteractorInput {
 					let groups = lessons.grouped(by: \.number).map { lessons in
 						let cellModels = lessons.map { lesson in
 							CompositionalLessonCell.Model(
-								subjectId: lesson.subject.identifier ?? "",
+								identifier: lesson.identifier,
 								baseIdentifier: lesson.type.baseIdentifier,
 								title: lesson.subject.brief ?? "",
 								subtitle: lesson.auditory,

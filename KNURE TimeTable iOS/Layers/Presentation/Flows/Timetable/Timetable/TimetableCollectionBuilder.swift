@@ -164,7 +164,8 @@ final class TimetableCollectionBuilder {
 	}
 
 	func build(
-		scrollDirection: @escaping () -> UICollectionView.ScrollDirection
+		scrollDirection: @escaping () -> UICollectionView.ScrollDirection,
+		lessonCellDelegate: LessonCellDelegate
 	) -> (
 		collection: UICollectionView,
 		dataSource: UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>
@@ -181,7 +182,7 @@ final class TimetableCollectionBuilder {
 		let registration = UICollectionView.CellRegistration<
 			CompositionalLessonCell, [CompositionalLessonCell.Model]
 		> { cell, indexPath, item in
-			cell.configure(with: item)
+			cell.configure(with: item, delegate: lessonCellDelegate)
 		}
 
 		dataSource = UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>(
@@ -238,8 +239,11 @@ final class TimetableCollectionBuilder {
 				case HorizontalTimeColumnHeader.identifier:
 					collectionView.dequeueConfiguredReusableSupplementary(using: horizontalTimeHeaderRegistration, for: indexPath)
 
-				default:
+				case TimeColumnHeader.identifier:
 					collectionView.dequeueConfiguredReusableSupplementary(using: timeHeaderRegistration, for: indexPath)
+
+				default:
+					nil
 			}
 		}
 

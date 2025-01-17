@@ -74,4 +74,13 @@ final class Assembly {
 	func makeSettingsView() -> SettingsView {
 		SettingsView()
 	}
+
+	func makeLessonDetailView(_ identifier: String) -> LessonDetailView {
+		LessonDetailView(
+			interactor: LessonDetailInteractor(
+				lessonDetailUseCase: LessonByIdUseCase(repository: lessonRepository)
+			),
+			identifier: identifier
+		)
+	}
 }

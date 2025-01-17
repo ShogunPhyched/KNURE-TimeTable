@@ -15,7 +15,7 @@
 		7716FCDB22885C4E00615D39 /* UpdateTimetableUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7716FCDA22885C4E00615D39 /* UpdateTimetableUseCase.swift */; };
 		771A83D522A7038C006964D7 /* ItemManaged+Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A83D422A7038C006964D7 /* ItemManaged+Convertable.swift */; };
 		771A83D722A707E1006964D7 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771A83D622A707E1006964D7 /* Convertable.swift */; };
-		773C1D8F22FC5C1000F1FF5C /* LessonManaged+Domain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C1D8E22FC5C1000F1FF5C /* LessonManaged+Domain.swift */; };
+		773C1D8F22FC5C1000F1FF5C /* LessonManaged+Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773C1D8E22FC5C1000F1FF5C /* LessonManaged+Convertable.swift */; };
 		7752F9392247E46E003DC9FE /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7752F9382247E46E003DC9FE /* CoreDataService.swift */; };
 		7752F93D2247F018003DC9FE /* CoreDataServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7752F93C2247F018003DC9FE /* CoreDataServiceImpl.swift */; };
 		7753DA52253340B20051A997 /* Mocks in Resources */ = {isa = PBXBuildFile; fileRef = 7753DA51253340B20051A997 /* Mocks */; };
@@ -50,6 +50,7 @@
 		77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC23C823C48FDA00A40D57 /* ItemsUseCase.swift */; };
 		77F160222402FA110028966F /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F160212402FA110028966F /* HTTP.swift */; };
 		77F16024240313750028966F /* KNURE.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F16023240313750028966F /* KNURE.Request.swift */; };
+		D40036C82D25D58E00D3E8E6 /* MigrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40036C72D25D58800D3E8E6 /* MigrationService.swift */; };
 		D4062C4C2CBC49BD00B1F6C6 /* AddItemsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */; };
 		D41E57B92D21CE0700FF0E0A /* ItemsPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E57B82D21CE0100FF0E0A /* ItemsPickerView.swift */; };
 		D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */; };
@@ -59,6 +60,9 @@
 		D466DD8B2CAB467E002A97BB /* Subscribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8A2CAB467D002A97BB /* Subscribing.swift */; };
 		D466DD8D2CAB48A1002A97BB /* AddedItemsSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */; };
 		D466DD8F2CAB4B8C002A97BB /* ItemsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */; };
+		D4674B6C2D3083D700B2C24F /* LessonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4674B6B2D3083C800B2C24F /* LessonDetailView.swift */; };
+		D4674B6E2D3083E300B2C24F /* LessonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4674B6D2D3083DB00B2C24F /* LessonDetailInteractor.swift */; };
+		D4674B702D341D6E00B2C24F /* LessonByIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4674B6F2D341D6400B2C24F /* LessonByIdUseCase.swift */; };
 		D468A59B2CDFE0FE002AD433 /* SelectItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */; };
 		D468A59D2CDFF18E002AD433 /* AddedItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */; };
 		D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */; };
@@ -121,7 +125,7 @@
 		7716FCDA22885C4E00615D39 /* UpdateTimetableUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTimetableUseCase.swift; sourceTree = "<group>"; };
 		771A83D422A7038C006964D7 /* ItemManaged+Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemManaged+Convertable.swift"; sourceTree = "<group>"; };
 		771A83D622A707E1006964D7 /* Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
-		773C1D8E22FC5C1000F1FF5C /* LessonManaged+Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonManaged+Domain.swift"; sourceTree = "<group>"; };
+		773C1D8E22FC5C1000F1FF5C /* LessonManaged+Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LessonManaged+Convertable.swift"; sourceTree = "<group>"; };
 		7752F9382247E46E003DC9FE /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		7752F93C2247F018003DC9FE /* CoreDataServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceImpl.swift; sourceTree = "<group>"; };
 		7753DA51253340B20051A997 /* Mocks */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Mocks; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		77F160212402FA110028966F /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		77F16023240313750028966F /* KNURE.Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KNURE.Request.swift; sourceTree = "<group>"; };
 		C33FCC631819965300328F6D /* KNURE TimeTable iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KNURE TimeTable iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40036C72D25D58800D3E8E6 /* MigrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationService.swift; sourceTree = "<group>"; };
 		D4062C4B2CBC49B300B1F6C6 /* AddItemsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsInteractor.swift; sourceTree = "<group>"; };
 		D41E57B82D21CE0100FF0E0A /* ItemsPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsPickerView.swift; sourceTree = "<group>"; };
 		D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableCollectionBuilder.swift; sourceTree = "<group>"; };
@@ -169,6 +174,9 @@
 		D466DD8A2CAB467D002A97BB /* Subscribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscribing.swift; sourceTree = "<group>"; };
 		D466DD8C2CAB4897002A97BB /* AddedItemsSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsSubscription.swift; sourceTree = "<group>"; };
 		D466DD8E2CAB4B80002A97BB /* ItemsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsListInteractor.swift; sourceTree = "<group>"; };
+		D4674B6B2D3083C800B2C24F /* LessonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailView.swift; sourceTree = "<group>"; };
+		D4674B6D2D3083DB00B2C24F /* LessonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailInteractor.swift; sourceTree = "<group>"; };
+		D4674B6F2D341D6400B2C24F /* LessonByIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonByIdUseCase.swift; sourceTree = "<group>"; };
 		D468A59A2CDFE0F3002AD433 /* SelectItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectItemUseCase.swift; sourceTree = "<group>"; };
 		D468A59C2CDFF185002AD433 /* AddedItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedItemsUseCase.swift; sourceTree = "<group>"; };
 		D468A59E2CDFF6C6002AD433 /* TimeColumnHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeColumnHeader.swift; sourceTree = "<group>"; };
@@ -255,6 +263,7 @@
 		770D9F7B223E41E40037C5B1 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
+				D40036C72D25D58800D3E8E6 /* MigrationService.swift */,
 				7710B0C424D06B7200BE4E2D /* Publishers.Entity.swift */,
 				7752F9382247E46E003DC9FE /* CoreDataService.swift */,
 				7752F93C2247F018003DC9FE /* CoreDataServiceImpl.swift */,
@@ -303,6 +312,7 @@
 		775A3F8A2221790300931A1F /* usecases */ = {
 			isa = PBXGroup;
 			children = (
+				D4674B6F2D341D6400B2C24F /* LessonByIdUseCase.swift */,
 				775A3F9422217CB200931A1F /* TimetableSubscription.swift */,
 				7716FCDA22885C4E00615D39 /* UpdateTimetableUseCase.swift */,
 			);
@@ -355,8 +365,8 @@
 		778DC8592364C04000580786 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
-				D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */,
 				77D4AAAC23AF7ADF00729A93 /* Timetable */,
+				D4674B6A2D30833B00B2C24F /* Detail */,
 			);
 			path = Timetable;
 			sourceTree = "<group>";
@@ -394,7 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				775A3F782221743500931A1F /* KNURELessonRepository.swift */,
-				773C1D8E22FC5C1000F1FF5C /* LessonManaged+Domain.swift */,
+				773C1D8E22FC5C1000F1FF5C /* LessonManaged+Convertable.swift */,
 			);
 			path = Lesson;
 			sourceTree = "<group>";
@@ -432,6 +442,7 @@
 		77D4AAAC23AF7ADF00729A93 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
+				D44CDA972CD2C7CE00B05CA5 /* TimetableCollectionBuilder.swift */,
 				77D4AAB323AF7B4F00729A93 /* TimetableInteractor.swift */,
 				77D4AAAD23AF7B1000729A93 /* TimetableViewController.swift */,
 				D44CDA9D2CD2D40400B05CA5 /* TimetableView.swift */,
@@ -477,6 +488,15 @@
 				D44CDA992CD2C9F700B05CA5 /* CompositionalLessonCell.swift */,
 			);
 			path = Collection;
+			sourceTree = "<group>";
+		};
+		D4674B6A2D30833B00B2C24F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D4674B6D2D3083DB00B2C24F /* LessonDetailInteractor.swift */,
+				D4674B6B2D3083C800B2C24F /* LessonDetailView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		D469AADC2B8D13CC0091D91D /* ItemsList */ = {
@@ -694,10 +714,12 @@
 				D468A59F2CDFF6D3002AD433 /* TimeColumnHeader.swift in Sources */,
 				D44CDA982CD2C7DE00B05CA5 /* TimetableCollectionBuilder.swift in Sources */,
 				775A3F85222177AA00931A1F /* Item.swift in Sources */,
+				D40036C82D25D58E00D3E8E6 /* MigrationService.swift in Sources */,
 				77DC23C923C48FDA00A40D57 /* ItemsUseCase.swift in Sources */,
 				77CC5A5225EAA20600D1FEEF /* NetworkService.swift in Sources */,
 				D466DD8F2CAB4B8C002A97BB /* ItemsListInteractor.swift in Sources */,
 				777AE2152221988E00EAEE20 /* Data+EncodingTransformation.swift in Sources */,
+				D4674B6E2D3083E300B2C24F /* LessonDetailInteractor.swift in Sources */,
 				D48A24C12C1638210081BF3A /* SettingsView.swift in Sources */,
 				D474E1DA2CC2ECD7009A0709 /* Assembly.swift in Sources */,
 				775A3F9922217FD700931A1F /* Main.swift in Sources */,
@@ -724,8 +746,10 @@
 				7778E46822D1096000477BFE /* Configuration.swift in Sources */,
 				775A3F832221779200931A1F /* Lesson.swift in Sources */,
 				775A3F75222172F900931A1F /* LessonRepository.swift in Sources */,
+				D4674B6C2D3083D700B2C24F /* LessonDetailView.swift in Sources */,
 				D44CDA9E2CD2D40700B05CA5 /* TimetableView.swift in Sources */,
-				773C1D8F22FC5C1000F1FF5C /* LessonManaged+Domain.swift in Sources */,
+				773C1D8F22FC5C1000F1FF5C /* LessonManaged+Convertable.swift in Sources */,
+				D4674B702D341D6E00B2C24F /* LessonByIdUseCase.swift in Sources */,
 				77D4AAB423AF7B4F00729A93 /* TimetableInteractor.swift in Sources */,
 				D44CDA9A2CD2CA0A00B05CA5 /* CompositionalLessonCell.swift in Sources */,
 				77F16024240313750028966F /* KNURE.Request.swift in Sources */,

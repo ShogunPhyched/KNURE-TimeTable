@@ -74,7 +74,7 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 private extension ItemsListInteractor {
 	func subtile(for item: Item) -> String {
 		if let updated = item.updated {
-			return "Updated: " + Formatters.itemFormatter.string(from: updated)
+			return "Updated: " + updated.formatted(date: .abbreviated, time: .standard)
 		}
 		return "Not updated"
 	}

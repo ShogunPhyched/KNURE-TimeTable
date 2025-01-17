@@ -40,9 +40,9 @@ struct AddItemsListView: View {
 						}
 					}
 				}
-				.font(.title)
+				.font(.headline)
 			}
-			.searchable(text: $searchText)
+			.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
 			.navigationTitle("Add \(itemType.presentationValue)")
 			.toolbarRole(.editor)
 			.listStyle(.plain)
