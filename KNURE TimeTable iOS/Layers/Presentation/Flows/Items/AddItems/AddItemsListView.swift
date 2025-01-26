@@ -17,6 +17,20 @@ struct AddItemsListView: View {
 	@State private var isErrorOccured: Bool = false
 	@State private var error: Error?
 
+	private var filtredViewModels: [AddItemsListView.Section] {
+		if searchText.isEmpty {
+			return viewModel
+		} else {
+			return viewModel.compactMap { entry in
+				var entry = entry
+				entry.models = entry.models.filter {
+					$0.title.localizedCaseInsensitiveContains(searchText)
+				}
+				return entry.models.isEmpty ? nil : entry
+			}
+		}
+	}
+
 	let interactor: AddItemsInteractor
 	let itemType: Item.Kind
 
@@ -26,7 +40,7 @@ struct AddItemsListView: View {
 				ProgressView()
 					.controlSize(.large)
 			}
-			List(viewModel) { record in
+			List(filtredViewModels) { record in
 				SwiftUI.Section(record.title) {
 					ForEach(record.models) { model in
 						Button {
@@ -72,7 +86,7 @@ extension AddItemsListView {
 	struct Section: Identifiable, Hashable {
 		var id: String { models.map(\.id).joined() }
 		let title: String
-		let models: [AddItemsListView.Model]
+		var models: [AddItemsListView.Model]
 	}
 
 	struct Model: Identifiable, Sendable, Hashable {
