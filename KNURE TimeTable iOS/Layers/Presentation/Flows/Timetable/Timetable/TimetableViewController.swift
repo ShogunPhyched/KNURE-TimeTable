@@ -103,18 +103,14 @@ final class TimetableViewController: UIViewController {
 
 		NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
 			.sink { [weak self] _ in
-				self?.viewModel.isVerticalMode = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
-			}
-			.store(in: &cancellables)
-
-		viewModel.$isVerticalMode
-			.receive(on: DispatchQueue.main)
-			.sink { [weak self] value in
 				guard let self else { return }
+				let isVerticalMode = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
+				self.viewModel.isVerticalMode = isVerticalMode
+
 				let collectionView = (self.view as? TimetableMainView)?.collectionView
 				collectionView?.setCollectionViewLayout(
 					self.builder.makeLayout(
-						scrollDirection: { value ? .vertical : .horizontal },
+						scrollDirection: { isVerticalMode ? .vertical : .horizontal },
 						dataSource: { self.viewModel.dataSource }
 					), animated: false
 				)
@@ -160,7 +156,7 @@ final class TimetableViewController: UIViewController {
 
 	@objc
 	private func displayPicker() {
-		let hostingController = UIHostingController(
+		let controller = UIHostingController(
 			rootView: ItemsPickerView(items: viewModel.addedItems) { [weak self] item in
 				Task {
 					try await self?.interactor.selectItem(identifier: item.identifier)
@@ -168,20 +164,20 @@ final class TimetableViewController: UIViewController {
 			}
 		)
 
-		hostingController.modalPresentationStyle = .popover
-		hostingController.popoverPresentationController?.sourceView = titleButton
-		present(hostingController, animated: true)
+		controller.modalPresentationStyle = .popover
+		controller.popoverPresentationController?.sourceView = titleButton
+		present(controller, animated: true)
 	}
 }
 
 extension TimetableViewController: LessonCellDelegate {
-	func didTapLesson(_ cell: CompositionalLessonCell.Model) {
-		let hostingController = UIHostingController(
-			rootView: Assembly.shared.makeLessonDetailView(cell.identifier)
+	func didTapLesson(cell: CompositionalLessonCell.LessonCell, model: CompositionalLessonCell.Model) {
+		let controller = UIHostingController(
+			rootView: Assembly.shared.makeLessonDetailView(model.identifier)
 		)
 
-		hostingController.modalPresentationStyle = .popover
-		hostingController.popoverPresentationController?.sourceView = titleButton
-		present(hostingController, animated: true)
+		controller.modalPresentationStyle = .popover
+		controller.popoverPresentationController?.sourceView = cell
+		present(controller, animated: true)
 	}
 }

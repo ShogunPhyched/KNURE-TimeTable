@@ -21,8 +21,8 @@ final class TimetableMainView: UIView {
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
-			collectionView.topAnchor.constraint(equalTo: topAnchor),
-			collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+			collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
 			collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
 		])

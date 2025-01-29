@@ -72,46 +72,41 @@ final class TimetableCollectionBuilder {
 
 	private func makeHorizontalSection(
 		_ section: TimetableViewModel.CollectionModel.Section,
+		environment: NSCollectionLayoutEnvironment,
 		maxNumberOfPairs: Int
 	) -> NSCollectionLayoutSection {
-
-		let layoutItem = NSCollectionLayoutItem(
+		let group = NSCollectionLayoutGroup.vertical(
 			layoutSize: NSCollectionLayoutSize(
-				widthDimension: .fractionalWidth(1.0),
-				heightDimension: .fractionalHeight(1.0 / CGFloat(maxNumberOfPairs))
-			)
-		)
-
-		let verticalGroup = NSCollectionLayoutGroup.vertical(
-			layoutSize: .init(
-				widthDimension: .absolute(100),
-				heightDimension: .fractionalHeight(0.9)
+				widthDimension: .absolute(100.0),
+				heightDimension: .fractionalHeight(1.0)
 			),
-			repeatingSubitem: layoutItem,
+			repeatingSubitem: NSCollectionLayoutItem(
+				layoutSize: NSCollectionLayoutSize(
+					widthDimension: .fractionalWidth(1.0),
+					heightDimension: .fractionalHeight(1.0 / CGFloat(maxNumberOfPairs))
+				)
+			),
 			count: section.cellModels.count
 		)
-
-		verticalGroup.interItemSpacing = .fixed(itemSpacing)
-
-		verticalGroup.edgeSpacing = NSCollectionLayoutEdgeSpacing(
-			leading: nil,
-			top: .fixed(60),
-			trailing: nil,
-			bottom: .fixed(itemSpacing)
+		group.interItemSpacing = .fixed(itemSpacing)
+		group.contentInsets = NSDirectionalEdgeInsets(
+			top: environment.container.effectiveContentSize.height * 0.1,
+			leading: 0,
+			bottom: 0,
+			trailing: 0
 		)
 
-		let section = NSCollectionLayoutSection(group: verticalGroup)
+		let section = NSCollectionLayoutSection(group: group)
 
 		let header = NSCollectionLayoutBoundarySupplementaryItem(
-			layoutSize: .init(
-				widthDimension: .absolute(100),
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .absolute(100.0),
 				heightDimension: .fractionalHeight(0.1)
 			),
 			elementKind: DayColumnHeaderView.identifier,
 			alignment: .top
 		)
 
-		section.interGroupSpacing = itemSpacing
 		section.boundarySupplementaryItems = [header]
 
 		return section
@@ -123,21 +118,20 @@ final class TimetableCollectionBuilder {
 	) -> UICollectionViewCompositionalLayout {
 		let configuration = UICollectionViewCompositionalLayoutConfiguration()
 		configuration.scrollDirection = scrollDirection()
-		configuration.interSectionSpacing = 4
-
+		configuration.interSectionSpacing = itemSpacing
+		configuration.contentInsetsReference = .automatic
 		if configuration.scrollDirection == .horizontal {
-			let timeHeader = NSCollectionLayoutBoundarySupplementaryItem(
+			let header = NSCollectionLayoutBoundarySupplementaryItem(
 				layoutSize: .init(
-					widthDimension: .absolute(60),
-					heightDimension: .fractionalHeight(0.85)
+					widthDimension: .absolute(60.0),
+					heightDimension: .fractionalHeight(0.9)
 				),
 				elementKind: HorizontalTimeColumnHeader.identifier,
-				alignment: .leading
+				alignment: .bottomLeading
 			)
-			timeHeader.pinToVisibleBounds = true
-			timeHeader.zIndex = 2
-
-			configuration.boundarySupplementaryItems = [timeHeader]
+			header.pinToVisibleBounds = true
+			header.zIndex = 2
+			configuration.boundarySupplementaryItems = [header]
 		}
 
 		return UICollectionViewCompositionalLayout(sectionProvider: { index, environment in
@@ -154,7 +148,7 @@ final class TimetableCollectionBuilder {
 				case .horizontal:
 					let allSections = dataSource().snapshot().sectionIdentifiers
 					let maxNumberOfPairs = allSections.flatMap(\.cellModels).flatMap({ $0 }).map(\.number).max() ?? 1
-					return self.makeHorizontalSection(itemSection, maxNumberOfPairs: maxNumberOfPairs)
+					return self.makeHorizontalSection(itemSection, environment: environment, maxNumberOfPairs: maxNumberOfPairs)
 
 				@unknown default:
 					fatalError()

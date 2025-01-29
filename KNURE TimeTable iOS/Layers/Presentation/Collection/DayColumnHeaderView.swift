@@ -38,10 +38,10 @@ final class DayColumnHeaderView: UICollectionReusableView {
 			backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 			backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
 
-			label.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+			label.topAnchor.constraint(equalTo: topAnchor, constant: 8),
 			label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
 			label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-			label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+			label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
 		])
 	}
 

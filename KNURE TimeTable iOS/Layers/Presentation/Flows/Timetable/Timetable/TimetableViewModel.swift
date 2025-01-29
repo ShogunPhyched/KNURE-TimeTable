@@ -11,12 +11,12 @@ import UIKit
 
 final class TimetableViewModel {
 	@Published var addedItems: [Item] = []
-	@Published var isVerticalMode: Bool = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
+	var isVerticalMode: Bool = UserDefaults.standard.bool(forKey: "TimetableVerticalMode")
 
 	var dataSource: UICollectionViewDiffableDataSource<TimetableViewModel.CollectionModel.Section, [CompositionalLessonCell.Model]>!
 
 	@MainActor func update() {
-		update(with: TimetableViewModel.CollectionModel(sections: dataSource!.snapshot().sectionIdentifiers), animated: false)
+		update(with: TimetableViewModel.CollectionModel(sections: dataSource.snapshot().sectionIdentifiers), animated: false)
 	}
 
 	@MainActor func update(with model: TimetableViewModel.CollectionModel, animated: Bool) {

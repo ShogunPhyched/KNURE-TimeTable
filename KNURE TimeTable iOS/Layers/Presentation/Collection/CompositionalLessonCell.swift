@@ -11,7 +11,7 @@ import UIKit
 @MainActor
 protocol LessonCellDelegate: AnyObject {
 
-	func didTapLesson(_ cell: CompositionalLessonCell.Model)
+	func didTapLesson(cell: CompositionalLessonCell.LessonCell, model: CompositionalLessonCell.Model)
 }
 
 final class CompositionalLessonCell: UICollectionViewCell {
@@ -165,7 +165,7 @@ final class CompositionalLessonCell: UICollectionViewCell {
 				self.backgroundColor = self.backgroundColor?.withAlphaComponent(1.0)
 			}, completion: { _ in
 				if let model = self.model {
-					self.delegate?.didTapLesson(model)
+					self.delegate?.didTapLesson(cell: self, model: model)
 				}
 
 				UIView.animate(withDuration: 0.15) {
