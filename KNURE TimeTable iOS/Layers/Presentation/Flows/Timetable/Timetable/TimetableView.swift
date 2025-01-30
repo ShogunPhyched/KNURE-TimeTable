@@ -22,7 +22,7 @@ final class TimetableMainView: UIView {
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
 		NSLayoutConstraint.activate([
 			collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-			collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+			collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
 			collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			collectionView.trailingAnchor.constraint(equalTo: trailingAnchor)
 		])

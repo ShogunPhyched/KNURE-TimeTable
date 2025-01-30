@@ -19,6 +19,7 @@ struct LessonDetailView: View {
 	var body: some View {
 		List {
 			Text(title)
+				.frame(maxWidth: .infinity, alignment: .center)
 				.multilineTextAlignment(.center)
 				.font(.largeTitle)
 			ForEach(viewModel) { section in
