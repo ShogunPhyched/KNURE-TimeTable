@@ -147,8 +147,14 @@ final class TimetableCollectionBuilder {
 
 				case .horizontal:
 					let allSections = dataSource().snapshot().sectionIdentifiers
-					let maxNumberOfPairs = allSections.flatMap(\.cellModels).flatMap({ $0 }).map(\.number).max() ?? 1
-					return self.makeHorizontalSection(itemSection, environment: environment, maxNumberOfPairs: maxNumberOfPairs)
+					let pairNumbers = allSections.flatMap(\.cellModels).flatMap({ $0 }).map(\.number)
+					let maxNumberOfPairs = pairNumbers.max() ?? 1
+					let minNumberOfPairs = pairNumbers.min() ?? 0
+					return self.makeHorizontalSection(
+						itemSection,
+						environment: environment,
+						maxNumberOfPairs: abs(minNumberOfPairs - maxNumberOfPairs) + 1
+					)
 
 				@unknown default:
 					fatalError()

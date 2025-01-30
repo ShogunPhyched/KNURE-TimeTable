@@ -172,6 +172,7 @@ final class TimetableViewController: UIViewController {
 
 extension TimetableViewController: LessonCellDelegate {
 	func didTapLesson(cell: CompositionalLessonCell.LessonCell, model: CompositionalLessonCell.Model) {
+		guard !model.dummy else { return }
 		let controller = UIHostingController(
 			rootView: Assembly.shared.makeLessonDetailView(model.identifier)
 		)

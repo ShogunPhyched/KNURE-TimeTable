@@ -34,6 +34,7 @@ struct LessonDetailView: View {
 				}
 			}
 		}
+		.scrollIndicators(.hidden)
 		.task {
 			let response = await interactor.obtainContent(identifier)
 			title = response.0
