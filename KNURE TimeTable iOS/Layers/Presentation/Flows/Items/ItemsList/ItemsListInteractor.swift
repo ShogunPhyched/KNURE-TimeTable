@@ -41,17 +41,17 @@ extension ItemsListInteractor: ItemsListInteractorInput {
 
 	func observeAddedItems() -> AnyPublisher<[ItemsListView.Model], Never> {
 		addedItemsSubscription.subscribe(())
-			.map { Dictionary(grouping: $0, by: \.type) }
-			.map { dictionary in
-				dictionary.map { key, value in
+			.map { $0.grouped(by: \.type) }
+			.map { group in
+				group.enumerated().map { index, items in
 					ItemsListView.Model(
-						sectionName: key.presentationValue,
-						items: value.map {
+						sectionName: group[index].first?.type.presentationValue ?? "",
+						items: items.map {
 							ItemCell.Model(
 								id: $0.identifier,
 								title: $0.shortName,
 								subtitle: self.subtile(for: $0),
-								state: .idle,
+								state: $0.selected ? .selected : .idle,
 								type: $0.type
 							)
 						}

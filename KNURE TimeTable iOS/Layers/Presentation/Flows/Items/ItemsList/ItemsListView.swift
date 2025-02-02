@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ItemsListView: View {
 
@@ -15,27 +16,19 @@ struct ItemsListView: View {
 	@State private var viewModel: [ItemsListView.Model] = []
 	@State private var isErrorOccured: Bool = false
 	@State private var error: Error?
+	@State private var cancellables: Set<AnyCancellable> = []
 
 	let interactor: ItemsListInteractorInput
 
 	var body: some View {
 		NavigationStack(path: $path) {
 			List(viewModel) { record in
-				Section(record.sectionName) {
+				Section(header: Text(record.sectionName)) {
 					ForEach(record.items) { item in
-						ItemCell(model: item)
-							.swipeActions(edge: .trailing, allowsFullSwipe: true) {
-								Button(role: .destructive) {
-									Task {
-										try await Task.sleep(nanoseconds: 250_000_000)
-										try await interactor.removeItem(identifier: item.id)
-									}
-								} label: {
-									Label("Delete", systemImage: "trash")
-								}
-							}
+						ItemCell(model: item, interactor: interactor)
 							.onTapGesture {
 								Task {
+									updateItemState(identifier: item.id, state: .updating)
 									do {
 										try await interactor.updateTimetable(of: item.type, identifier: item.id)
 									} catch {
@@ -47,8 +40,10 @@ struct ItemsListView: View {
 					}
 				}
 			}
-			.onReceive(interactor.observeAddedItems()) { output in
-				viewModel = output
+			.onAppear {
+				interactor.observeAddedItems()
+					.sink { viewModel = $0 }
+					.store(in: &cancellables)
 			}
 			.navigationTitle("Items List")
 			.alert("An Error has occured", isPresented: $isErrorOccured, actions: {
@@ -79,9 +74,17 @@ struct ItemsListView: View {
 extension ItemsListView {
 	struct Model: Identifiable, Equatable {
 
-		var id: String { items.map(\.id).joined(separator: "_") }
+		var id: String { items.map(\.id).joined(separator: "_") + items.map(\.state.rawValue).joined(separator: "_") }
 		let sectionName: String
 		var items: [ItemCell.Model] = []
+	}
+
+	func updateItemState(identifier: String, state: ItemCell.Model.State) {
+		for index in viewModel.indices {
+			for subindex in viewModel[index].items.indices where viewModel[index].items[subindex].id == identifier {
+				viewModel[index].items[subindex].state = state
+			}
+		}
 	}
 }
 

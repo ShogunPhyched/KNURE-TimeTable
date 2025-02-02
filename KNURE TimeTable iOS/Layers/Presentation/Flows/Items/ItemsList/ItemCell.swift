@@ -10,7 +10,9 @@ import SwiftUI
 
 struct ItemCell: View {
 
-	var model: Model
+	@State var model: Model
+
+	let interactor: ItemsListInteractorInput
 
     var body: some View {
 		HStack(alignment: .center) {
@@ -24,22 +26,25 @@ struct ItemCell: View {
 			Spacer()
 			switch model.state {
 				case .idle:
-					Button(role: nil) {
+					Image(systemName: "arrow.down.to.line")
+						.foregroundStyle(.blue)
 
-					} label: {
-//						Image(systemName: "arrow.trianglehead.2.clockwise")
-						Image(systemName: "arrow.down.to.line")
-							.foregroundStyle(.blue)
-					}
 				case .selected:
-					Button(role: nil) {
+					Image(systemName: "checkmark")
+						.foregroundStyle(.blue)
 
-					} label: {
-						Image(systemName: "checkmark")
-							.foregroundStyle(.blue)
-					}
 				case .updating:
 					ProgressView()
+			}
+		}
+		.swipeActions(edge: .trailing, allowsFullSwipe: true) {
+			Button(role: .destructive) {
+				Task {
+					try await Task.sleep(nanoseconds: 250_000_000)
+					try await interactor.removeItem(identifier: model.id)
+				}
+			} label: {
+				Label("Delete", systemImage: "trash")
 			}
 		}
     }
@@ -50,7 +55,7 @@ struct ItemCell: View {
 
 		let title: String
 		let subtitle: String
-		let state: State
+		var state: State
 		let type: Item.Kind
 
 		enum State: String {
@@ -59,8 +64,4 @@ struct ItemCell: View {
 			case updating
 		}
 	}
-}
-
-#Preview {
-	ItemCell(model: .init(id: "some", title: "PI-11-3", subtitle: "Not updated", state: .idle, type: .group))
 }
